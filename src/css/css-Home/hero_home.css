@@ -1,0 +1,30 @@
+.hero {
+    width: 100%;
+    min-height: calc(100vh);
+    display: flex ;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 1px
+}
+
+.first-div-menu {
+    background-color: #9ff794;
+    width: 65%;
+    height: 100px;
+    padding: 16%;
+
+}
+.second-div-menu img {
+    width: 110%;
+    height: auto;
+    display: block;
+    padding: auto;
+}
+.main-div-menu{
+    background-color: #2f69e7;
+    justify-content: space-between;
+    display: flex;
+    padding: 8%;
+    margin: auto;
+    width: 90%
+}

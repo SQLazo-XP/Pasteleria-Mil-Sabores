@@ -1,0 +1,58 @@
+/*1. Definir tamaño del Logo */
+
+.logoMenu {
+    width: 115px;
+    height: auto;
+    padding: 1.3px 1.3px;
+    margin-left: 10px;
+}
+
+.navbar {
+    background: #FFC0CB;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.logo-link {
+    font-size: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 35px;
+  padding: auto;
+  overflow: hidden;
+}
+
+li {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+ul li {
+  float: left;
+}
+
+/*2. Ajustar el estilo de lista  */
+ul li a {
+  display: grid;
+  color: #000000;
+  text-align: center;
+  padding: 20px 24px;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  background-color: #ffb5c0;
+}
+
+/* funte principal de la web */
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+/* Ocupar todo el espacio de la web */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
