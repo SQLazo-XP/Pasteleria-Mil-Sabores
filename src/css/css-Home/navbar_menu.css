@@ -1,0 +1,75 @@
+/* ============================================
+   navbar_menu.css - Barra de navegacion
+   ============================================ */
+
+.navbar {
+  background: var(--pink);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  display: block;
+  color: var(--brown-dark);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 22px 24px;
+  transition: background var(--transition);
+}
+
+.navbar-links li a:hover {
+  background: var(--pink-hover);
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.logoMenu {
+  width: 90px;
+  height: auto;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .navbar-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .navbar-links li a {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+
+  .logoMenu {
+    width: 65px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-links li a {
+    padding: 8px 10px;
+    font-size: 0.78rem;
+  }
+}

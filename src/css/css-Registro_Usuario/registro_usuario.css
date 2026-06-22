@@ -1,0 +1,181 @@
+/* ============================================
+   registro_usuario.css - Pagina de Registro
+   ============================================ */
+
+/* Seccion del formulario */
+.register-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Tarjeta blanca del formulario */
+.register-card {
+  background-color: #FFFFFF;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px #ffb5c0;
+  border: 1px solid #ffb5c0;
+  overflow: hidden;
+}
+
+/* Encabezado */
+.form-header-bar {
+  background-color: #f2eeeb;
+  padding: 15px 25px;
+  border-bottom: 1px solid #F0EAE6;
+}
+
+.form-header-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #5D4037;
+  text-transform: capitalize;
+}
+
+/* Cuerpo del formulario */
+.form-body {
+  padding: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #5D4037;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 11px 16px;
+  font-size: 0.95rem;
+  border: 1.5px solid #E0D5D0;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  color: #2C2523;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: #8B4513;
+  box-shadow: 0 0 0 3px #F5D9C8;
+}
+
+/* Fila con dos campos (Region y Comuna) */
+.form-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.form-row .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+/* Selectores desplegables */
+.form-select {
+  width: 100%;
+  padding: 11px 16px;
+  font-size: 0.9rem;
+  border: 1.5px solid #E0D5D0;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  color: #2C2523;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235D4037' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 15px;
+  padding-right: 40px;
+}
+
+.form-select:focus {
+  border-color: #8B4513;
+  box-shadow: 0 0 0 3px #F5D9C8;
+}
+
+/* Boton de registro */
+.submit-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.submit-btn {
+  background-color: #FFFFFF;
+  color: #5D4037;
+  border: 2.5px solid #5D4037;
+  padding: 12px 45px;
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  letter-spacing: 0.5px;
+}
+
+.submit-btn:hover {
+  background-color: #5D4037;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px #E0CEC8;
+}
+
+/* Mensajes de error */
+.error-message {
+  color: #d9534f;
+  font-size: 0.78rem;
+  font-weight: bold;
+  margin-top: 5px;
+  display: none;
+}
+
+.form-input.error-input,
+.form-select.error-input {
+  border-color: #d9534f;
+  background-color: #FFF8F8;
+}
+
+.form-group.has-error .error-message {
+  display: block;
+}
+
+/* Responsive: celulares */
+@media (max-width: 576px) {
+  .register-card {
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
+  }
+
+  .form-body {
+    padding: 20px 0;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+}

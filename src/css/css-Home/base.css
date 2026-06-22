@@ -1,0 +1,41 @@
+/* ============================================
+   base.css - Colores, reset y estilos base
+   ============================================ */
+
+/* Colores globales */
+:root {
+  --bg-cream: #FFF5E1;
+  --pink: #FFC0CB;
+  --pink-hover: #ffb5c0;
+  --chocolate: #8B4513;
+  --brown-dark: #5D4037;
+  --grey-light: #B0BEC5;
+  --white: #FFFFFF;
+  --transition: 0.3s ease;
+}
+
+/* Reset: quita margenes y rellenos del navegador */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: var(--bg-cream);
+  color: var(--brown-dark);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}

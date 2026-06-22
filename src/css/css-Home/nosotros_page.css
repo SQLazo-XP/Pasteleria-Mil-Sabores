@@ -1,0 +1,152 @@
+/* ============================================
+   nosotros_page.css - Pagina Nosotros
+   ============================================ */
+
+.nosotros-hero {
+  background-color: var(--pink-hover);
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.nosotros-hero h1 {
+  font-size: 38px;
+  color: var(--brown-dark);
+  margin-bottom: 12px;
+  font-weight: 900;
+}
+
+.nosotros-hero p {
+  font-size: 18px;
+  color: var(--brown-dark);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.nosotros-historia {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.nosotros-historia h2 {
+  font-size: 28px;
+  color: var(--brown-dark);
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.nosotros-historia p {
+  font-size: 16px;
+  color: var(--brown-dark);
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.nosotros-valores {
+  background-color: #FFF0F3;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.nosotros-valores h2 {
+  font-size: 28px;
+  color: var(--brown-dark);
+  margin-bottom: 40px;
+  font-weight: 800;
+}
+
+.valores-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.valor-card {
+  background-color: var(--white);
+  border: 2px solid var(--pink-hover);
+  border-radius: 12px;
+  padding: 30px 20px;
+}
+
+.valor-icono {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.valor-card h3 {
+  font-size: 18px;
+  color: var(--brown-dark);
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.valor-card p {
+  font-size: 14px;
+  color: var(--brown-dark);
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+.nosotros-equipo {
+  max-width: 1000px;
+  margin: 60px auto 80px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.nosotros-equipo h2 {
+  font-size: 28px;
+  color: var(--brown-dark);
+  margin-bottom: 40px;
+  font-weight: 800;
+}
+
+.equipo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.miembro-card {
+  background-color: var(--white);
+  border: 2px solid var(--pink-hover);
+  border-radius: 12px;
+  padding: 25px;
+}
+
+.miembro-avatar {
+  width: 80px;
+  height: 80px;
+  background-color: var(--pink);
+  border-radius: 50%;
+  margin: 0 auto 15px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+}
+
+.miembro-card h3 {
+  font-size: 16px;
+  color: var(--brown-dark);
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.miembro-card p {
+  font-size: 13px;
+  color: var(--grey-light);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .valores-grid,
+  .equipo-grid {
+    grid-template-columns: 1fr;
+  }
+}

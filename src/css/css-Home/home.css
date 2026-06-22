@@ -1,0 +1,12 @@
+/* ============================================
+   home.css - Archivo principal
+   Importa todos los estilos separados
+   ============================================ */
+
+@import url('base.css');
+@import url('navbar_menu.css');
+@import url('hero_menu.css');
+@import url('sections_menu.css');
+@import url('footers_menu.css');
+@import url('productos_page.css');
+@import url('nosotros_page.css');

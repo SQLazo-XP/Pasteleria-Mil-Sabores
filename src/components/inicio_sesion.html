@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión - Pastelería Mil Sabores</title>
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Estilos principales -->
+    <link rel="stylesheet" href="../css/css-Home/home.css">
+    <!-- Estilos de la pagina de inicio de sesion -->
+    <link rel="stylesheet" href="../css/css-Inicio_Sesion/inicio_sesion.css">
+    <!-- Iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  </head>
+  <body>
+
+    <!-- ===== ENCABEZADO ===== -->
+    <header>
+      <nav class="navbar">
+        <a href="../../index.html" class="logo-link">
+          <img src="../assets/logo.png" alt="Logo Mil Sabores" class="logoMenu" id="logo">
+        </a>
+        <ul class="navbar-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="./productos.html">Productos</a></li>
+          <li><a href="./nosotros.html">Nosotros</a></li>
+          <li><a href="./blogs.html">Blogs</a></li>
+          <li><a href="./contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ===== FORMULARIO DE INICIO DE SESION ===== -->
+    <main class="contenedor">
+
+      <!-- Logo y nombre -->
+      <div class="logo-empresa">
+        <img src="../assets/logo.png" alt="Logo Mil Sabores">
+        <h1>Pastelería Mil Sabores</h1>
+      </div>
+
+      <!-- Caja de inicio de sesion -->
+      <div class="login-box">
+        <div class="login-header">
+          Inicio de sesión
+        </div>
+
+        <form id="login-form" novalidate>
+          <label for="correo">CORREO</label>
+          <input type="email" id="correo" required>
+
+          <label for="contrasena">CONTRASEÑA</label>
+          <input type="password" id="contrasena" required>
+
+          <button type="submit">Iniciar sesión</button>
+        </form>
+      </div>
+
+    </main>
+
+    <!-- JavaScript -->
+    <script src="../js/js-Inicio_Sesion/inicio_sesion.js" defer></script>
+  </body>
+</html>

@@ -4,53 +4,103 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pastelería Mil Sabores</title>
-    <link rel="stylesheet" href="src/css/css-Home/navbar_home.css">
-    <link rel="stylesheet" href="src/css/css-Home/hero_home.css">
-    
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Estilos principales -->
+    <link rel="stylesheet" href="src/css/css-Home/home.css?v=2">
+    <!-- Iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   </head>
   <body>
 
+    <!-- ===== ENCABEZADO ===== -->
     <header>
-        <nav class="navbar">
-
-            <a href="./index.html" class="logo-link">
-                
-                <img src="src/assets/logo.png" alt="" class="logoMenu" id="logo">
-                Pastelería Mil Sabores
-            </a>
-            
-            <ul class="navbar-links">
-
-                <li><a href="index.html">Home</a></li>
-                <li><a href="productos.html">Productos</a></li>
-                <li><a href="nosotros.html">Nosotros</a></li>
-                <li><a href="blogs.html">Blogs</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-
-            </ul>
-        </nav>
+      <nav class="navbar">
+        <a href="./index.html" class="logo-link">
+          <img src="src/assets/logo.png" alt="Logo Mil Sabores" class="logoMenu" id="logo">
+        </a>
+        <ul class="navbar-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="src/components/productos.html">Productos</a></li>
+          <li><a href="src/components/nosotros.html">Nosotros</a></li>
+          <li><a href="src/components/blogs.html">Blogs</a></li>
+          <li><a href="src/components/contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
     </header>
 
+    <!-- ===== PORTADA PRINCIPAL ===== -->
     <section class="hero">
-        <div class="main-div-menu">
-            <div class="first-div-menu">
-                <div >
-                    <h1>Pastelería  <br>Mil Sabores</h1>
-                    <p class="parrafo">Lavandería express: comodidad y rapidez en cada entrega.</p>
-                </div>
-                <div>
-                    <a href="src/components/productos.html" class="btn">Ver Productos</a>
-                </div>
-            
-            </div>
-            <div class="second-div-menu">
-                <div>
-                    <img src="src/assets/portada_menu.jpg" alt="" class="" id="">
-                </div>
-            </div>
-        </div>    
+      <div class="main-div-menu">
+        <div class="first-div-menu">
+          <div class="div-h1-p">
+            <h1>Pastelería  <br>Mil Sabores</h1>
+            <p class="parrafo">Lavandería express: comodidad y rapidez en cada entrega.</p>
+          </div>
+          <div>
+            <a href="src/components/productos.html" class="btn">Ver Productos</a>
+          </div>
+        </div>
+        <div class="second-div-menu">
+          <div>
+            <img src="src/assets/portada_menu.jpg" alt="Portada Mil Sabores">
+          </div>
+        </div>
+      </div>
     </section>
 
+    <!-- ===== PRODUCTOS POPULARES ===== -->
+    <section class="populares-section">
+      <h2 class="populares-title">Productos Populares</h2>
+      <div id="productos-populares-grid" class="populares-grid">
+        <!-- Los productos se cargan con JavaScript -->
+      </div>
+    </section>
+
+    <!-- ===== PIE DE PAGINA ===== -->
+    <footer class="footer">
+      <div class="footer-container">
+
+        <div class="footer-left">
+          <h4 class="footer-brand">Pastelería Mil Sabores</h4>
+          <div class="payment-icons">
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Visa">
+            <img src="https://cdn-icons-png.flaticon.com/512/349/349228.png" alt="MasterCard">
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196565.png" alt="Amex">
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196566.png" alt="PayPal">
+          </div>
+        </div>
+
+        <div class="footer-center">
+          <a href="index.html">Home</a>
+          <span>|</span>
+          <a href="src/components/productos.html">Productos</a>
+          <span>|</span>
+          <a href="src/components/nosotros.html">Nosotros</a>
+          <span>|</span>
+          <a href="src/components/blogs.html">Blogs</a>
+          <span>|</span>
+          <a href="src/components/contacto.html">Contacto</a>
+        </div>
+
+        <div class="footer-right">
+          <p>Stay In Touch! Join our Newsletter.</p>
+          <form class="newsletter">
+            <input type="email" placeholder="Enter Email">
+            <button type="submit">Subscribe</button>
+          </form>
+          <div class="social-links">
+            <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="src/js/js-Home/home.js" defer></script>
   </body>
 </html>
-
