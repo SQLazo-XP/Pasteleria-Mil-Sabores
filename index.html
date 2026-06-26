@@ -27,6 +27,17 @@
           <li><a href="src/components/blogs.html">Blogs</a></li>
           <li><a href="src/components/contactos.html">Contacto</a></li>
         </ul>
+        <div class="cart-wrapper">
+          <div class="cart-icon" id="cart-icon">🛒<span class="cart-badge" id="cart-count">0</span></div>
+          <div class="cart-dropdown" id="cart-dropdown">
+            <div class="cart-dropdown-header">Carrito de Compras</div>
+            <div class="cart-items" id="cart-items"></div>
+            <div class="cart-dropdown-footer">
+              <span>Total: $<span id="cart-total">0</span></span>
+              <button class="cart-checkout-btn">Ver Carrito</button>
+            </div>
+          </div>
+        </div>
       </nav>
     </header>
 
@@ -102,5 +113,6 @@
 
     <!-- JavaScript -->
     <script src="src/js/js-Home/home.js" defer></script>
+    <script src="src/js/js-Carrito/carrito.js" defer></script>
   </body>
 </html>
