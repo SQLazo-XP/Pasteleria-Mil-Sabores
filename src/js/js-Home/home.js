@@ -1,10 +1,16 @@
+// ============================================
+// home.js - Pagina de Inicio (Home)
+// Muestra los productos populares en una grilla
+// ============================================
+
+// --- Lista de productos (datos fijos) ---
 const productos = [
   {
-    "codigo": "TC001",
-    "nombre": "Torta Cuadrada de Chocolate",
-    "precio": 45000,
-    "categoria": "Tortas Cuadradas",
-    "imagen": "src/assets/Imagenes_Pasteles/Torta_Cuadrada_Chocolate.png"
+    "codigo": "TC001",                                                    // Codigo unico del producto
+    "nombre": "Torta Cuadrada de Chocolate",                              // Nombre del producto
+    "precio": 45000,                                                      // Precio en pesos chilenos
+    "categoria": "Tortas Cuadradas",                                      // Categoria a la que pertenece
+    "imagen": "src/assets/Imagenes_Pasteles/Torta_Cuadrada_Chocolate.png" // Ruta de la imagen local
   },
   {
     "codigo": "TC002",
@@ -113,18 +119,34 @@ const productos = [
   }
 ];
 
+// --- Cuando la pagina termina de cargar ---
 document.addEventListener('DOMContentLoaded', () => {
+
+  // Busca el contenedor donde se mostraran las tarjetas
   const grid = document.getElementById('productos-populares-grid');
+
+  // Toma solo los primeros 8 productos para mostrar
   const populares = productos.slice(0, 8);
+
+  // Llama a la funcion que dibuja las tarjetas
   renderizarPopulares(populares);
 
+  // --- Funcion que crea las tarjetas en pantalla ---
   function renderizarPopulares(lista) {
+
+    // Limpia el contenido anterior del contenedor
     grid.innerHTML = '';
 
+    // Recorre cada producto de la lista
     lista.forEach(producto => {
+
+      // Crea un div para la tarjeta
       const card = document.createElement('div');
+
+      // Le asigna la clase CSS "popular-card"
       card.className = 'popular-card';
 
+      // Llena la tarjeta con el HTML de los datos del producto
       card.innerHTML = `
         <div class="popular-img-container">
           <img src="${producto.imagen}" alt="${producto.nombre}" loading="lazy">
@@ -138,6 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
 
+      // Agrega la tarjeta al contenedor en la pagina
       grid.appendChild(card);
     });
   }
