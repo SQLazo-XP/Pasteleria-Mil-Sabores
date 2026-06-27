@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/css-Home/home.css">
+    <link rel="stylesheet" href="../css/css-Home/home.css?v=10">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -23,7 +23,10 @@
           <li><a href="./nosotros.html">Nosotros</a></li>
           <li><a href="./blogs.html">Blogs</a></li>
           <li><a href="./contactos.html">Contacto</a></li>
+          <li><a href="./inicio_sesion.html" class="nav-auth-btn">Iniciar Sesión</a></li>
+          <li><a href="./registro_usuario.html" class="nav-auth-btn nav-register-btn">Registrarse</a></li>
         </ul>
+        <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
         <div class="cart-wrapper">
           <div class="cart-icon" id="cart-icon">🛒<span class="cart-badge" id="cart-count">0</span></div>
           <div class="cart-dropdown" id="cart-dropdown">
@@ -39,35 +42,56 @@
     </header>
 
     <main>
-        <h1 class="blogs-title">Noticias Importantes</h1>
+        <h1 class="blogs-title">Noticias e Historias</h1>
 
         <section class="caso">
             <div class="caso-texto">
-                <h2>Caso Curioso #1</h2>
+                <h2>El Secreto de Nuestras Tortas</h2>
                 <p>
-                    Descripción breve del caso curioso. Aquí puedes agregar información relevante
-                    para los usuarios sobre nuestras últimas novedades y eventos especiales
-                    en la pastelería.
+                    Cada torta que sale de nuestra cocina lleva horas de preparación artesanal. 
+                    Usamos solo ingredientes frescos y naturales: mantequilla de primera calidad, 
+                    huevos de campo y chocolate belga. Descubre el proceso detrás de cada creación.
                 </p>
-                <button class="caso-btn">VER CASO ▼</button>
+                <button class="caso-btn" onclick="alert('Artículo completo próximamente.')">VER MÁS ▼</button>
             </div>
             <div class="caso-imagen">
-                <span>Imagen</span>
+                <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=600&q=80" 
+                     alt="Pastelera decorando torta artesanal" 
+                     style="width:100%;height:100%;object-fit:cover;border-radius:9px;display:block;">
             </div>
         </section>
 
         <section class="caso">
             <div class="caso-texto">
-                <h2>Caso Curioso #2</h2>
+                <h2>Temporada de Tortas Especiales</h2>
                 <p>
-                    Descripción breve del segundo caso curioso. Puedes agregar detalles
-                    o una introducción sobre las recetas tradicionales que hemos recuperado
-                    y compartido con nuestra comunidad.
+                    Con la llegada de las fiestas, estrenamos nuestra nueva colección de tortas de temporada. 
+                    Desde tortas de frutos rojos hasta nuestro famoso bizcocho de naranja con miel. 
+                    ¡Encarga la tuya antes de que se agoten!
                 </p>
-                <button class="caso-btn">VER CASO ▼</button>
+                <button class="caso-btn" onclick="alert('Artículo completo próximamente.')">VER MÁS ▼</button>
             </div>
             <div class="caso-imagen">
-                <span>Imagen</span>
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=600&q=80" 
+                     alt="Torta de bodas con flores" 
+                     style="width:100%;height:100%;object-fit:cover;border-radius:9px;display:block;">
+            </div>
+        </section>
+
+        <section class="caso">
+            <div class="caso-texto">
+                <h2>Opciones Veganas y Sin Azúcar</h2>
+                <p>
+                    En Mil Sabores creemos que todos merecen disfrutar de un buen postre. 
+                    Por eso hemos ampliado nuestra línea de productos veganos y sin azúcar, 
+                    elaborados con ingredientes naturales sin sacrificar el sabor.
+                </p>
+                <button class="caso-btn" onclick="alert('Artículo completo próximamente.')">VER MÁS ▼</button>
+            </div>
+            <div class="caso-imagen">
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80" 
+                     alt="Brownies veganos sin azúcar" 
+                     style="width:100%;height:100%;object-fit:cover;border-radius:9px;display:block;">
             </div>
         </section>
 

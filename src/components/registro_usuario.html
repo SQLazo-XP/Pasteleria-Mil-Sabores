@@ -4,20 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registro de Usuario - Pastelería Mil Sabores</title>
-    <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Pacifico&display=swap" rel="stylesheet">
-    <!-- Estilos principales (incluye navbar y footer) -->
     <link rel="stylesheet" href="../css/css-Home/home.css">
-    <!-- Estilos de la pagina de registro -->
     <link rel="stylesheet" href="../css/css-Registro_Usuario/registro_usuario.css">
-    <!-- Iconos de Font Awesome -->
+    <link rel="stylesheet" href="../css/css-Home/footer_menu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   </head>
   <body>
 
-    <!-- ===== ENCABEZADO ===== -->
     <header>
       <nav class="navbar">
         <a href="../../index.html" class="logo-link">
@@ -28,31 +24,17 @@
           <li><a href="./productos.html">Productos</a></li>
           <li><a href="./nosotros.html">Nosotros</a></li>
           <li><a href="./blogs.html">Blogs</a></li>
-          <li><a href="./contactos.html">Contacto</a></li>
+          <li><a href="./contacto.html">Contacto</a></li>
         </ul>
-        <div class="cart-wrapper">
-          <div class="cart-icon" id="cart-icon">🛒<span class="cart-badge" id="cart-count">0</span></div>
-          <div class="cart-dropdown" id="cart-dropdown">
-            <div class="cart-dropdown-header">Carrito de Compras</div>
-            <div class="cart-items" id="cart-items"></div>
-            <div class="cart-dropdown-footer">
-              <span>Total: $<span id="cart-total">0</span></span>
-              <button class="cart-checkout-btn">Ver Carrito</button>
-            </div>
-          </div>
-        </div>
       </nav>
     </header>
 
-    <!-- ===== FORMULARIO DE REGISTRO ===== -->
     <section class="register-section">
       <div class="register-card">
-        <!-- Encabezado -->
         <div class="form-header-bar">
           <div class="form-header-title">Registro de usuario</div>
         </div>
 
-        <!-- Formulario -->
         <form id="register-form" class="form-body" novalidate>
           <div class="form-group">
             <label for="nombre" class="form-label">Nombre Completo</label>
@@ -104,7 +86,6 @@
       </div>
     </section>
 
-    <!-- ===== PIE DE PAGINA ===== -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-left">
@@ -112,7 +93,7 @@
           <div class="payment-icons">
             <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Visa">
             <img src="https://cdn-icons-png.flaticon.com/512/349/349228.png" alt="MasterCard">
-            <img src="https://cdn-icons-png.flaticon.com/512/196/196565.png" alt="Amex">
+            <img src="https://cdn-icons-png.flaticon.com/512/349/349228.png" alt="Amex">
             <img src="https://cdn-icons-png.flaticon.com/512/196/196566.png" alt="PayPal">
           </div>
         </div>
@@ -137,12 +118,12 @@
             <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+
           </div>
         </div>
       </div>
     </footer>
 
-    <!-- JavaScript -->
     <script src="../js/js-Registro_Usuario/registro_usuario.js" defer></script>
-    <script src="../js/js-Carrito/carrito.js" defer></script>
   </body>
+</html>

@@ -8,8 +8,10 @@
 @import url('hero_menu.css');
 @import url('sections_menu.css');
 @import url('footers_menu.css');
-@import url('productos_page.css');
+@import url('productos_page.css?v=12');
 @import url('nosotros_page.css');
 @import url('blogs_page.css');
 @import url('contactos_page.css');
+@import url('carrito_widget.css');
 @import url('carrito_page.css');
+@import url('detalle_producto.css');

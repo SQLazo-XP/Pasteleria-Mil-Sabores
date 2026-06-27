@@ -226,6 +226,25 @@
   color: var(--white);
 }
 
+.product-detail-btn {
+  display: inline-block;
+  background-color: var(--pink);
+  color: var(--brown-dark);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.product-detail-btn:hover {
+  background-color: var(--chocolate);
+  color: var(--white);
+}
+
 /* Mensaje cuando no hay resultados */
 .no-results {
   grid-column: 1 / -1;

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - Pastelería Mil Sabores</title>
+    <meta name="description" content="Revisa tu carrito de compras en Pastelería Mil Sabores y completa tu pedido.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/css-Home/home.css?v=10">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- ===== ENCABEZADO ===== -->
+    <header>
+      <nav class="navbar">
+        <a href="../../index.html" class="logo-link">
+          <img src="../assets/logo.png" alt="Logo Mil Sabores" class="logoMenu" id="logo">
+        </a>
+        <ul class="navbar-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="./productos.html">Productos</a></li>
+          <li><a href="./nosotros.html">Nosotros</a></li>
+          <li><a href="./blogs.html">Blogs</a></li>
+          <li><a href="./contactos.html">Contacto</a></li>
+          <li><a href="./inicio_sesion.html" class="nav-auth-btn">Iniciar Sesión</a></li>
+          <li><a href="./registro_usuario.html" class="nav-auth-btn nav-register-btn">Registrarse</a></li>
+        </ul>
+        <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        <div class="cart-wrapper">
+          <div class="cart-icon" id="cart-icon">🛒<span class="cart-badge" id="cart-count">0</span></div>
+          <div class="cart-dropdown" id="cart-dropdown">
+            <div class="cart-dropdown-header">Carrito de Compras</div>
+            <div class="cart-items" id="cart-items"></div>
+            <div class="cart-dropdown-footer">
+              <span>Total: $<span id="cart-total">0</span></span>
+              <button class="cart-checkout-btn">Ver Carrito</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ===== CONTENIDO DEL CARRITO ===== -->
+    <main class="carrito-page">
+        <h1 class="carrito-page-title">Mi Carrito</h1>
+
+        <div class="carrito-layout">
+
+            <!-- Lista de productos -->
+            <div class="carrito-tabla" id="carrito-tabla">
+                <!-- Generado por JS -->
+            </div>
+
+            <!-- Panel de resumen -->
+            <div class="carrito-resumen">
+                <h2 class="resumen-title">Resumen del Pedido</h2>
+
+                <div class="resumen-linea">
+                    <span>Subtotal (<span id="resumen-cantidad">0</span> productos)</span>
+                    <span>$<span id="resumen-subtotal">0</span></span>
+                </div>
+                <div class="resumen-linea">
+                    <span>Envío estimado</span>
+                    <span id="resumen-envio">$2.990</span>
+                </div>
+
+                <div class="resumen-total-linea">
+                    <span class="resumen-total-label">Total</span>
+                    <span class="resumen-total-precio">$<span id="resumen-total">0</span></span>
+                </div>
+
+                <button class="btn-pagar" id="btn-pagar">Finalizar Compra</button>
+                <button class="btn-vaciar" id="btn-vaciar">🗑 Vaciar Carrito</button>
+
+                <p class="resumen-envio-nota">🔒 Compra segura • Envío en 24-48h</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== MODAL DE PAGO EXITOSO ===== -->
+    <div class="pago-modal-overlay" id="pago-modal-overlay">
+        <div class="pago-modal">
+            <div class="pago-modal-icono">🎉</div>
+            <h2>¡Pedido Realizado!</h2>
+            <p>Tu pedido ha sido procesado con éxito. Te contactaremos pronto para coordinar la entrega. ¡Gracias por elegir Pastelería Mil Sabores!</p>
+            <button class="btn-modal-cerrar" id="btn-modal-cerrar">Volver al Inicio</button>
+        </div>
+    </div>
+
+    <!-- ===== PIE DE PAGINA ===== -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-left">
+          <h4 class="footer-brand">Pastelería Mil Sabores</h4>
+          <div class="payment-icons">
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Visa">
+            <img src="https://cdn-icons-png.flaticon.com/512/349/349228.png" alt="MasterCard">
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196565.png" alt="Amex">
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196566.png" alt="PayPal">
+          </div>
+        </div>
+        <div class="footer-center">
+          <a href="../../index.html">Home</a>
+          <span>|</span>
+          <a href="./productos.html">Productos</a>
+          <span>|</span>
+          <a href="./nosotros.html">Nosotros</a>
+          <span>|</span>
+          <a href="./blogs.html">Blogs</a>
+          <span>|</span>
+          <a href="./contactos.html">Contacto</a>
+        </div>
+        <div class="footer-right">
+          <p>Stay In Touch! Join our Newsletter.</p>
+          <form class="newsletter">
+            <input type="email" placeholder="Enter Email">
+            <button type="submit">Subscribe</button>
+          </form>
+          <div class="social-links">
+            <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/js-Carrito/carrito.js" defer></script>
+    <script>
+        // ============================================
+        // carrito_page.js - Pagina completa del Carrito
+        // ============================================
+
+        const ENVIO = 2990;
+
+        // Productos con imagenes (para mostrar en la pagina)
+        const CARrito_ASSET = '../assets/Imagenes_Pasteles/';
+        const productosData = [
+          { "codigo": "TC001", "imagen": "Torta_Cuadrada_Chocolate.png", "categoria": "Tortas Cuadradas" },
+          { "codigo": "TC002", "imagen": "Torta_Cuadrada_Frutas_Vainilla.png", "categoria": "Tortas Cuadradas" },
+          { "codigo": "TT001", "imagen": "Torta_Circular_Vainilla.png", "categoria": "Tortas Circulares" },
+          { "codigo": "TT002", "imagen": "Torta_Circular_Manjar_Nueces.png", "categoria": "Tortas Circulares" },
+          { "codigo": "PI001", "imagen": "Mousse_Chocolate_Individual.png", "categoria": "Postres Individuales" },
+          { "codigo": "PI002", "imagen": "Tiramisu_Clasico.png", "categoria": "Postres Individuales" },
+          { "codigo": "PSA001", "imagen": "Torta_Naranja.png", "categoria": "Sin Azúcar" },
+          { "codigo": "PSA002", "imagen": "Cheesecake_Sin_Azucar.png", "categoria": "Sin Azúcar" },
+          { "codigo": "PT001", "imagen": "Empanada_Manzana.png", "categoria": "Pastelería Tradicional" },
+          { "codigo": "PT002", "imagen": "Tarta_De_Santiago.png", "categoria": "Pastelería Tradicional" },
+          { "codigo": "PG001", "imagen": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=200&q=80", "categoria": "Sin Gluten" },
+          { "codigo": "PG002", "imagen": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=200&q=80", "categoria": "Sin Gluten" },
+          { "codigo": "PV001", "imagen": "Torta_Chocolate_vegana.png", "categoria": "Vegana" },
+          { "codigo": "PV002", "imagen": "Galletas_Veganas.png", "categoria": "Vegana" },
+          { "codigo": "TE001", "imagen": "https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?auto=format&fit=crop&w=200&q=80", "categoria": "Tortas Especiales" },
+          { "codigo": "TE002", "imagen": "https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=200&q=80", "categoria": "Tortas Especiales" }
+        ];
+
+        function getImagen(codigo) {
+            const data = productosData.find(p => p.codigo === codigo);
+            if (!data) return 'https://via.placeholder.com/65x65?text=?';
+            return data.imagen.startsWith('http') ? data.imagen : CARrito_ASSET + data.imagen;
+        }
+
+        function getCategoria(codigo) {
+            const data = productosData.find(p => p.codigo === codigo);
+            return data ? data.categoria : '';
+        }
+
+        function renderCarritoPage() {
+            const tabla = document.getElementById('carrito-tabla');
+            const carrito = obtenerCarrito();
+
+            if (carrito.length === 0) {
+                tabla.innerHTML = `
+                    <div class="carrito-vacio">
+                        <div class="carrito-vacio-icono">🛒</div>
+                        <h3>Tu carrito está vacío</h3>
+                        <p>¡Agrega algunos productos deliciosos!</p>
+                        <a href="./productos.html" class="btn-ir-productos">Ver Productos</a>
+                    </div>
+                `;
+                actualizarResumen([], 0);
+                return;
+            }
+
+            const headerHTML = `
+                <div class="carrito-tabla-header">
+                    <span>Producto</span>
+                    <span>Cantidad</span>
+                    <span>Precio</span>
+                    <span></span>
+                </div>
+            `;
+
+            const rowsHTML = carrito.map(p => `
+                <div class="carrito-row" data-codigo="${p.codigo}">
+                    <div class="carrito-producto-info">
+                        <img src="${getImagen(p.codigo)}" alt="${p.nombre}" class="carrito-producto-img">
+                        <div>
+                            <div class="carrito-producto-nombre">${p.nombre}</div>
+                            <div class="carrito-producto-categoria">${getCategoria(p.codigo)}</div>
+                        </div>
+                    </div>
+                    <div class="carrito-qty-controls">
+                        <button class="carrito-qty-btn-full" onclick="cambiarCantidadPage('${p.codigo}', -1)">−</button>
+                        <span class="carrito-qty-num">${p.cantidad}</span>
+                        <button class="carrito-qty-btn-full" onclick="cambiarCantidadPage('${p.codigo}', 1)">+</button>
+                    </div>
+                    <div class="carrito-precio-col">$${(p.precio * p.cantidad).toLocaleString('es-CL')}</div>
+                    <button class="carrito-eliminar-btn" onclick="eliminarPage('${p.codigo}')">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            tabla.innerHTML = headerHTML + rowsHTML;
+
+            const total = carrito.reduce((sum, p) => sum + p.precio * p.cantidad, 0);
+            const cantidad = carrito.reduce((sum, p) => sum + p.cantidad, 0);
+            actualizarResumen(carrito, total, cantidad);
+        }
+
+        function actualizarResumen(carrito, subtotal, cantidad = 0) {
+            document.getElementById('resumen-cantidad').textContent = cantidad;
+            document.getElementById('resumen-subtotal').textContent = subtotal.toLocaleString('es-CL');
+
+            const envio = carrito.length === 0 ? 0 : ENVIO;
+            document.getElementById('resumen-envio').textContent = carrito.length === 0 ? 'Gratis' : `$${ENVIO.toLocaleString('es-CL')}`;
+            document.getElementById('resumen-total').textContent = (subtotal + envio).toLocaleString('es-CL');
+        }
+
+        function cambiarCantidadPage(codigo, delta) {
+            cambiarCantidad(codigo, delta);
+            renderCarritoPage();
+        }
+
+        function eliminarPage(codigo) {
+            eliminarProducto(codigo);
+            renderCarritoPage();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCarritoPage();
+
+            // Boton vaciar
+            document.getElementById('btn-vaciar').addEventListener('click', () => {
+                if (obtenerCarrito().length === 0) return;
+                if (confirm('¿Estás seguro que deseas vaciar el carrito?')) {
+                    vaciarCarrito();
+                    renderCarritoPage();
+                }
+            });
+
+            // Boton pagar
+            document.getElementById('btn-pagar').addEventListener('click', () => {
+                if (obtenerCarrito().length === 0) {
+                    alert('Tu carrito está vacío. Agrega productos antes de continuar.');
+                    return;
+                }
+                document.getElementById('pago-modal-overlay').classList.add('open');
+            });
+
+            // Cerrar modal
+            document.getElementById('btn-modal-cerrar').addEventListener('click', () => {
+                vaciarCarrito();
+                renderCarritoPage();
+                document.getElementById('pago-modal-overlay').classList.remove('open');
+                window.location.href = '../../index.html';
+            });
+
+            // Cerrar modal al hacer click fuera
+            document.getElementById('pago-modal-overlay').addEventListener('click', function(e) {
+                if (e.target === this) this.classList.remove('open');
+            });
+
+        });
+    </script>
+</body>
+</html>

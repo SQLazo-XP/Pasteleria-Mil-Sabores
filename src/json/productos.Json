@@ -6,7 +6,7 @@
     "descripcion": "Deliciosa torta de chocolate con capas de ganache y un toque de avellanas. Personalizable con mensajes especiales.",
     "precio": 45000,
     "categoria": "Tortas Cuadradas",
-    "imagen": "../assets/Imagenes_Pasteles/Torta_Cuadrada_Chocolate.png"
+    "imagen": "src/assets/Imagenes_Pasteles/Torta_Cuadrada_Chocolate.png"
   },
   {
     "id": "TC002",
@@ -15,7 +15,7 @@
     "descripcion": "Una mezcla de frutas frescas y crema chantilly sobre un suave bizcocho de vainilla, ideal para celebraciones.",
     "precio": 50000,
     "categoria": "Tortas Cuadradas",
-    "imagen": "../assets/Imagenes_Pasteles/Torta_Cuadrada_Frutas_Vainilla.png"
+    "imagen": "src/assets/Imagenes_Pasteles/Torta_Cuadrada_Frutas_Vainilla.png"
   },
   {
     "id": "TT001",
@@ -24,7 +24,7 @@
     "descripcion": "Bizcocho de vainilla clásico relleno con crema pastelera y cubierto con un glaseado dulce, perfecto para cualquier ocasión.",
     "precio": 40000,
     "categoria": "Tortas Circulares",
-    "imagen": "../assets/Imagenes_Pasteles/Torta_Circular_Vainilla.png"
+    "imagen": "src/assets/Imagenes_Pasteles/Torta_Circular_Vainilla.png"
   },
   {
     "id": "TT002",
@@ -33,7 +33,7 @@
     "descripcion": "Torta tradicional chilena con manjar y nueces, un deleite para los amantes de los sabores dulces y clásicos.",
     "precio": 42000,
     "categoria": "Tortas Circulares",
-    "imagen": "../assets/Imagenes_Pasteles/Torta_Circular_Manjar_Nueces.png"
+    "imagen": "src/assets/Imagenes_Pasteles/Torta_Circular_Manjar_Nueces.png"
   },
   {
     "id": "PI001",
@@ -42,7 +42,7 @@
     "descripcion": "Postre individual cremoso y suave, hecho con chocolate de alta calidad, ideal para los amantes del chocolate.",
     "precio": 5000,
     "categoria": "Postres Individuales",
-    "imagen": "../assets/Imagenes_Pasteles/Mousse_Chocolate_Individual.png"
+    "imagen": "src/assets/Imagenes_Pasteles/Mousse_Chocolate_Individual.png"
   },
   {
     "id": "PI002",
@@ -51,7 +51,7 @@
     "descripcion": "Un postre italiano individual con capas de café, mascarpone y cacao, perfecto para finalizar cualquier comida.",
     "precio": 5500,
     "categoria": "Postres Individuales",
-    "imagen": "../assets/Imagenes_Pasteles/Tiramisu_Clasico.png"
+    "imagen": "src/assets/Imagenes_Pasteles/Tiramisu_Clasico.png"
   },
   {
     "id": "PSA001",
@@ -60,7 +60,7 @@
     "descripcion": "Torta ligera y deliciosa, endulzada naturalmente, ideal para quienes buscan opciones más saludables.",
     "precio": 48000,
     "categoria": "Productos Sin Azúcar",
-    "imagen": "../assets/Imagenes_Pasteles/Torta_Naranja.png"
+    "imagen": "src/assets/Imagenes_Pasteles/Torta_Naranja.png"
   },
   {
     "id": "PSA002",
@@ -69,7 +69,7 @@
     "descripcion": "Suave y cremoso, este cheesecake es una opción perfecta para disfrutar sin culpa.",
     "precio": 47000,
     "categoria": "Productos Sin Azúcar",
-    "imagen": "../assets/Imagenes_Pasteles/Cheesecake_Sin_Azucar.png"
+    "imagen": "src/assets/Imagenes_Pasteles/Cheesecake_Sin_Azucar.png"
   },
   {
     "id": "PT001",
@@ -78,16 +78,16 @@
     "descripcion": "Pastelería tradicional rellena de manzanas especiadas, perfecta para un dulce desayuno o merienda.",
     "precio": 3000,
     "categoria": "Pastelería Tradicional",
-    "imagen": "../assets/Imagenes_Pasteles/Empanada_Manzana.png"
+    "imagen": "src/assets/Imagenes_Pasteles/Empanada_Manzana.png"
   },
   {
     "id": "PT002",
     "codigo": "PT002",
     "nombre": "Tarta de Santiago",
-    "descripcion": "Tradicional tarta española hecha con almendras, azúcar, y huevos, una delicia para los amantes de los postres clásicos.",
+    "descripcion": "Tradicional tarta española hecha con almendras, azúcar y huevos, una delicia para los amantes de los postres clásicos.",
     "precio": 6000,
     "categoria": "Pastelería Tradicional",
-    "imagen": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80"
+    "imagen": "src/assets/Imagenes_Pasteles/Tarta_De_Santiago.png"
   },
   {
     "id": "PG001",

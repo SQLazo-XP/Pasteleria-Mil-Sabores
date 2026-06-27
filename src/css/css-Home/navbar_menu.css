@@ -33,6 +33,33 @@
   background: var(--pink-hover);
 }
 
+/* Botones de autenticacion */
+.navbar-links li a.nav-auth-btn {
+  padding: 8px 18px;
+  margin: 8px 4px;
+  border-radius: 8px;
+  border: 2px solid var(--chocolate);
+  color: var(--chocolate);
+  font-size: 0.9rem;
+  background: transparent;
+}
+
+.navbar-links li a.nav-auth-btn:hover {
+  background: var(--chocolate);
+  color: var(--white);
+}
+
+.navbar-links li a.nav-register-btn {
+  background: var(--chocolate);
+  color: var(--white);
+}
+
+.navbar-links li a.nav-register-btn:hover {
+  background: var(--brown-dark);
+  border-color: var(--brown-dark);
+  color: var(--white);
+}
+
 .logo-link {
   display: flex;
   align-items: center;
@@ -44,22 +71,78 @@
   display: block;
 }
 
+/* Hamburguesa */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: var(--brown-dark);
+  margin: 5px 0;
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
+    flex-wrap: wrap;
     padding: 12px 16px;
     gap: 8px;
   }
 
+  .hamburger {
+    display: block;
+    margin-left: auto;
+  }
+
   .navbar-links {
-    flex-wrap: wrap;
-    justify-content: center;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    order: 3;
+    gap: 0;
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
+
+  .navbar-links li {
+    width: 100%;
+    text-align: center;
   }
 
   .navbar-links li a {
-    padding: 10px 14px;
-    font-size: 0.85rem;
+    padding: 12px 14px;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+
+  .navbar-links li a.nav-auth-btn {
+    margin: 4px auto;
+    width: auto;
+    display: inline-block;
   }
 
   .logoMenu {
@@ -69,7 +152,7 @@
 
 @media (max-width: 480px) {
   .navbar-links li a {
-    padding: 8px 10px;
-    font-size: 0.78rem;
+    padding: 10px;
+    font-size: 0.85rem;
   }
 }

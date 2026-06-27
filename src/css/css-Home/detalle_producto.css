@@ -1,0 +1,257 @@
+/* ============================================
+   detalle_producto.css - Pagina Detalle Producto
+   ============================================ */
+
+.detalle-container {
+  width: 92%;
+  max-width: 1200px;
+  margin: 50px auto;
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+/* Galeria */
+
+.detalle-galeria {
+  flex: 1;
+  min-width: 0;
+}
+
+.detalle-imagen-principal {
+  width: 100%;
+  height: 460px;
+  border: 3px solid var(--chocolate);
+  border-radius: 16px;
+  position: relative;
+  background: var(--white);
+  overflow: hidden;
+}
+
+.detalle-imagen-principal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detalle-miniaturas {
+  display: flex;
+  gap: 12px;
+  padding: 18px 0;
+}
+
+.detalle-miniatura {
+  width: 70px;
+  height: 70px;
+  border: 2px solid var(--grey-light);
+  border-radius: 10px;
+  position: relative;
+  background: var(--white);
+  cursor: pointer;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.detalle-miniatura:hover {
+  border-color: var(--pink);
+}
+
+.detalle-miniatura.activo {
+  border: 3px solid var(--chocolate);
+}
+
+.detalle-miniatura img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Info */
+
+.detalle-info {
+  width: 380px;
+  flex-shrink: 0;
+}
+
+.detalle-titulo-precio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detalle-titulo-precio h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.8rem;
+  color: var(--brown-dark);
+  font-weight: 400;
+}
+
+.detalle-titulo-precio span {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--chocolate);
+}
+
+.detalle-info hr {
+  margin: 22px 0;
+  border: none;
+  border-top: 2px dashed rgba(93, 64, 55, 0.15);
+}
+
+.detalle-categoria-tag {
+  display: inline-block;
+  background: var(--pink);
+  color: var(--brown-dark);
+  padding: 5px 14px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-radius: 50px;
+  margin-bottom: 12px;
+}
+
+.detalle-descripcion {
+  color: var(--brown-dark);
+  line-height: 1.7;
+  opacity: 0.8;
+  margin-bottom: 22px;
+  font-size: 0.95rem;
+}
+
+.detalle-info label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: var(--brown-dark);
+  font-size: 0.85rem;
+}
+
+.detalle-info input[type="number"] {
+  width: 80px;
+  padding: 10px;
+  border: 2px solid rgba(93, 64, 55, 0.2);
+  border-radius: 8px;
+  font-size: 1rem;
+  color: var(--brown-dark);
+  outline: none;
+  margin-bottom: 25px;
+}
+
+.detalle-info input[type="number"]:focus {
+  border-color: var(--chocolate);
+}
+
+.detalle-btn-carrito {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid var(--chocolate);
+  background: var(--chocolate);
+  color: var(--white);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 10px;
+  transition: var(--transition);
+}
+
+.detalle-btn-carrito:hover {
+  background: var(--white);
+  color: var(--chocolate);
+}
+
+/* Relacionados */
+
+.relacionados {
+  width: 92%;
+  max-width: 1200px;
+  margin: 20px auto 70px;
+}
+
+.relacionados h3 {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.5rem;
+  color: var(--chocolate);
+  margin-bottom: 25px;
+  font-weight: 400;
+}
+
+.relacionados-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.relacionado-item {
+  width: 170px;
+  border: 2px solid rgba(93, 64, 55, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--white);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.relacionado-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(93, 64, 55, 0.1);
+}
+
+.relacionado-item img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  display: block;
+}
+
+.relacionado-item .relacionado-nombre {
+  padding: 10px 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--brown-dark);
+}
+
+.relacionado-item .relacionado-precio {
+  padding: 0 12px 10px;
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--chocolate);
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .detalle-container {
+    flex-direction: column;
+    gap: 35px;
+  }
+
+  .detalle-info {
+    width: 100%;
+  }
+
+  .detalle-imagen-principal {
+    height: 350px;
+  }
+
+  .relacionados-grid {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .detalle-imagen-principal {
+    height: 260px;
+  }
+
+  .detalle-titulo-precio h1 {
+    font-size: 1.3rem;
+  }
+
+  .detalle-titulo-precio span {
+    font-size: 1.2rem;
+  }
+
+  .relacionado-item {
+    width: 140px;
+  }
+}

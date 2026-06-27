@@ -3,7 +3,7 @@ const CART_KEY = 'mil-sabores-carrito';
 function obtenerCarrito() {
   try {
     return JSON.parse(localStorage.getItem(CART_KEY)) || [];
-  } catch {
+  } catch (e) {
     return [];
   }
 }
@@ -81,17 +81,64 @@ function actualizarUI() {
   `).join('');
 }
 
+// Detecta si la pagina actual ya es la pagina del carrito
+function esCarritoPage() {
+  return window.location.pathname.includes('carrito.html');
+}
+
+// Detecta la ruta correcta al carrito segun donde este la pagina actual
+function getRutaCarrito() {
+  const path = window.location.pathname;
+  if (path.includes('/src/components/')) {
+    return './carrito.html';
+  }
+  return 'src/components/carrito.html';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const icono = document.getElementById('cart-icon');
   const dropdown = document.getElementById('cart-dropdown');
+  const checkoutBtn = document.querySelector('.cart-checkout-btn');
+
   if (icono && dropdown) {
     icono.addEventListener('click', (e) => {
       e.stopPropagation();
       dropdown.classList.toggle('cart-open');
-      actualizarUI();
+  actualizarUI();
+
+  // Newsletter: prevenir envio y mostrar mensaje
+  var newsletterForms = document.querySelectorAll('.newsletter');
+  newsletterForms.forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var email = this.querySelector('input[type="email"]');
+      if (email && email.value.trim()) {
+        alert('¡Gracias por suscribirte a nuestro newsletter!');
+        email.value = '';
+      }
+    });
+  });
+
+  // Hamburguesa: toggle menu movil
+  var hamburger = document.querySelector('.hamburger');
+  var navbarLinks = document.querySelector('.navbar-links');
+  if (hamburger && navbarLinks) {
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      navbarLinks.classList.toggle('active');
+    });
+  }
     });
     document.addEventListener('click', () => dropdown.classList.remove('cart-open'));
     dropdown.addEventListener('click', (e) => e.stopPropagation());
   }
+
+  // Boton "Ver Carrito" lleva a la pagina del carrito
+  if (checkoutBtn && !esCarritoPage()) {
+    checkoutBtn.addEventListener('click', () => {
+      window.location.href = getRutaCarrito();
+    });
+  }
+
   actualizarUI();
 });
