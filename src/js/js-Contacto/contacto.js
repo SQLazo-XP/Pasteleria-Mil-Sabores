@@ -1,13 +1,21 @@
+// ============================================
+// contacto.js - Pagina de Contacto
+// Valida y procesa el formulario de contacto
+// ============================================
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contacto-form');
 
+  // Lista de dominios de correo permitidos
   const DOMINIOS_PERMITIDOS = ['@inacap.cl', '@profesor.inacap.cl', '@gmail.com'];
 
+  // Verifica si el correo pertenece a un dominio permitido
   function dominioValido(email) {
     const e = email.trim().toLowerCase();
     return DOMINIOS_PERMITIDOS.some(d => e.endsWith(d));
   }
 
+  // Muestra un mensaje de error en el elemento con el id especificado
   function mostrarError(id, mensaje) {
     const el = document.getElementById(id);
     if (el) {
@@ -16,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Limpia el mensaje de error del elemento con el id especificado
   function limpiarError(id) {
     const el = document.getElementById(id);
     if (el) {
@@ -24,19 +33,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Marca visualmente un campo como invalido (borde rojo)
   function marcarInput(id) {
     const input = document.querySelector(`#${id}`);
     if (input) input.style.borderColor = '#c62828';
   }
 
+  // Restaura el borde original de un campo
   function limpiarInput(id) {
     const input = document.querySelector(`#${id}`);
     if (input) input.style.borderColor = '';
   }
 
+  // Evento que se dispara al enviar el formulario de contacto
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    // Limpia errores y estilos de validaciones anteriores
     limpiarError('error-nombre');
     limpiarError('error-correo');
     limpiarInput('contacto-nombre');
@@ -47,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let valido = true;
 
-    // Validar nombre
+    // Validacion: nombre obligatorio y maximo 100 caracteres
     if (!nombre.value.trim()) {
       mostrarError('error-nombre', 'El nombre es obligatorio.');
       marcarInput('contacto-nombre');
@@ -58,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
       valido = false;
     }
 
-    // Validar correo
+    // Validacion: correo obligatorio, maximo 100 caracteres y dominio permitido
     if (!correo.value.trim()) {
       mostrarError('error-correo', 'El correo es obligatorio.');
       marcarInput('contacto-correo');
@@ -73,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
       valido = false;
     }
 
+    // Si todos los campos son validos, muestra mensaje de exito y resetea el formulario
     if (valido) {
       alert('Mensaje enviado correctamente. ¡Gracias por contactarnos!');
       form.reset();

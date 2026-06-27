@@ -1,18 +1,18 @@
 // ============================================
 // productos_menu.js - Pagina de Productos
-// Muestra todos los productos con buscador y filtros
+// Muestra todos los productos con buscador y filtros por categoria
 // ============================================
 
 // --- Lista completa de productos (datos fijos) ---
 const productos = [
   {
-    "id": "TC001",                                                               // Identificador unico
-    "codigo": "TC001",                                                           // Codigo del producto
-    "nombre": "Torta Cuadrada de Chocolate",                                     // Nombre
-    "descripcion": "Deliciosa torta de chocolate con capas de ganache y un toque de avellanas. Personalizable con mensajes especiales.", // Descripcion
-    "precio": 45000,                                                             // Precio en CLP
-    "categoria": "Tortas Cuadradas",                                             // Categoria
-    "imagen": "../assets/Imagenes_Pasteles/Torta_Cuadrada_Chocolate.png"         // Ruta de imagen
+    "id": "TC001",
+    "codigo": "TC001",
+    "nombre": "Torta Cuadrada de Chocolate",
+    "descripcion": "Deliciosa torta de chocolate con capas de ganache y un toque de avellanas. Personalizable con mensajes especiales.",
+    "precio": 45000,
+    "categoria": "Tortas Cuadradas",
+    "imagen": "../assets/Imagenes_Pasteles/Torta_Cuadrada_Chocolate.png"
   },
   {
     "id": "TC002",
@@ -154,28 +154,26 @@ const productos = [
 // --- Cuando la pagina termina de cargar ---
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Obtiene el contenedor donde van las tarjetas
+  // Referencia al contenedor de tarjetas de productos
   const gridContainer = document.getElementById('productos-grid');
 
-  // Obtiene el input de busqueda
+  // Referencia al campo de busqueda por texto
   const searchInput = document.getElementById('search-input');
 
-  // Obtiene todos los botones de filtro
+  // Referencia a los botones de filtro por categoria
   const filterButtons = document.querySelectorAll('.filter-btn');
 
-  // Variable que guarda la categoria seleccionada ("Todo" por defecto)
+  // Almacena la categoria seleccionada actualmente ("Todo" por defecto)
   let categoriaActiva = 'Todo';
 
-  // Variable que guarda el texto escrito en la busqueda
+  // Almacena el texto ingresado en el buscador
   let textoBusqueda = '';
 
-  // --- Funcion que dibuja las tarjetas en pantalla ---
+  // Renderiza las tarjetas de producto en la grilla
   function mostrarProductos(lista) {
-
-    // Limpia el contenedor
     gridContainer.innerHTML = '';
 
-    // Si la lista esta vacia, muestra mensaje de "no resultados"
+    // Si no hay resultados, muestra un mensaje indicandolo
     if (lista.length === 0) {
       gridContainer.innerHTML = `
         <div class="no-results">
@@ -187,16 +185,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Recorre cada producto y crea su tarjeta
+    // Itera sobre la lista filtrada y crea una tarjeta para cada producto
     lista.forEach(producto => {
-
-      // Crea un div para la tarjeta
       const card = document.createElement('div');
-
-      // Asigna la clase CSS "product-card"
       card.className = 'product-card';
-
-      // Llena la tarjeta con los datos del producto
       card.innerHTML = `
         <div class="product-image-wrapper">
           <img src="${producto.imagen}" alt="${producto.nombre}" class="product-image" loading="lazy" onerror="this.src='../assets/Imagenes_Pasteles/Torta_Cuadrada_Chocolate.png'">
@@ -210,61 +202,48 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
       `;
-
-      // Agrega la tarjeta al contenedor
       gridContainer.appendChild(card);
     });
   }
 
-  // --- Funcion que filtra los productos segun categoria y busqueda ---
+  // Filtra los productos segun categoria activa y texto de busqueda, luego los renderiza
   function filtrarYMostrar() {
-
-    // Filtra el arreglo de productos
     const filtrados = productos.filter(producto => {
 
-      // Revisa si la categoria coincide (o si esta en "Todo")
+      // Verifica si coincide con la categoria seleccionada (o si se muestran todos)
       const coincideCategoria = categoriaActiva === 'Todo' || producto.categoria.toLowerCase() === categoriaActiva.toLowerCase();
 
-      // Revisa si el nombre o descripcion contienen el texto buscado
+      // Verifica si el nombre o descripcion contienen el texto buscado
       const coincideBusqueda = producto.nombre.toLowerCase().includes(textoBusqueda.toLowerCase()) ||
                                producto.descripcion.toLowerCase().includes(textoBusqueda.toLowerCase());
 
-      // Solo incluye el producto si cumple ambas condiciones
+      // El producto debe cumplir ambos criterios para mostrarse
       return coincideCategoria && coincideBusqueda;
     });
 
-    // Muestra los productos filtrados
     mostrarProductos(filtrados);
   }
 
-  // --- Cuando el usuario escribe en el buscador ---
+  // Escucha los cambios en el campo de busqueda y aplica el filtro en tiempo real
   searchInput.addEventListener('input', (e) => {
-
-    // Guarda el texto escrito (sin espacios al inicio/final)
     textoBusqueda = e.target.value.trim();
-
-    // Vuelve a filtrar y mostrar
     filtrarYMostrar();
   });
 
-  // --- Cuando el usuario hace clic en un boton de categoria ---
+  // Escucha los clics en los botones de categoria y actualiza el filtro
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-
-      // Quita la clase "active" de todos los botones
+      // Desmarca todos los botones y marca solo el seleccionado
       filterButtons.forEach(btn => btn.classList.remove('active'));
-
-      // Agrega la clase "active" al boton que se presiono
       button.classList.add('active');
 
-      // Actualiza la categoria activa (o "Todo" si no tiene data-category)
+      // Actualiza la categoria activa (usa "Todo" si el boton no tiene data-category)
       categoriaActiva = button.dataset.category || 'Todo';
 
-      // Vuelve a filtrar y mostrar
       filtrarYMostrar();
     });
   });
 
-  // --- Muestra todos los productos al cargar la pagina ---
+  // Muestra todos los productos al cargar la pagina por primera vez
   filtrarYMostrar();
 });

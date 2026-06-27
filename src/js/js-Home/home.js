@@ -3,8 +3,10 @@
 // Muestra los productos populares en una grilla
 // ============================================
 
+// Ruta base donde se almacenan las imagenes de los productos
 const ASSET_BASE = 'src/assets/Imagenes_Pasteles/';
 
+// Lista completa de productos disponibles en la tienda
 const productos = [
   { "codigo": "TC001", "nombre": "Torta Cuadrada de Chocolate", "precio": 45000, "categoria": "Tortas Cuadradas", "imagen": "Torta_Cuadrada_Chocolate.png" },
   { "codigo": "TC002", "nombre": "Torta Cuadrada de Frutas", "precio": 50000, "categoria": "Tortas Cuadradas", "imagen": "Torta_Cuadrada_Frutas_Vainilla.png" },
@@ -24,15 +26,18 @@ const productos = [
   { "codigo": "TE002", "nombre": "Torta Especial de Boda", "precio": 60000, "categoria": "Tortas Especiales", "imagen": "https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=600&q=80" }
 ];
 
+// Retorna la URL completa de la imagen (local o externa)
 function getImgUrl(imagen) {
   return imagen.startsWith('http') ? imagen : ASSET_BASE + imagen;
 }
 
+// Cuando la pagina carga, renderiza los primeros 8 productos como populares
 document.addEventListener('DOMContentLoaded', () => {
   const grid = document.getElementById('productos-populares-grid');
   const populares = productos.slice(0, 8);
   renderizarPopulares(populares);
 
+  // Crea las tarjetas de producto en la grilla de populares
   function renderizarPopulares(lista) {
     grid.innerHTML = '';
     lista.forEach(producto => {
@@ -52,11 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
       `;
+      // Al hacer clic en la tarjeta (excepto el boton), redirige al detalle del producto
       card.addEventListener('click', (e) => {
         if (!e.target.closest('.pop-add-btn')) {
           window.location.href = `src/components/detalle_producto.html?codigo=${producto.codigo}`;
         }
       });
+      // Al hacer clic en el boton, agrega el producto al carrito
       const btnAdd = card.querySelector('.pop-add-btn');
       btnAdd.addEventListener('click', (e) => {
         e.stopPropagation();

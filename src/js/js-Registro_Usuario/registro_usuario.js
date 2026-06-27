@@ -1,10 +1,17 @@
+// ============================================
+// registro_usuario.js - Pagina de Registro de Usuario
+// Valida los datos del formulario y guarda el nuevo usuario en localStorage
+// ============================================
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('register-form');
   const regionSelect = document.getElementById('region');
   const comunaSelect = document.getElementById('comuna');
 
+  // Lista de dominios de correo permitidos
   const DOMINIOS_PERMITIDOS = ['@inacap.cl', '@profesor.inacap.cl', '@gmail.com'];
 
+  // Carga las regiones disponibles en el selector desde el objeto global REGIONES_COMUNAS
   Object.keys(REGIONES_COMUNAS).forEach(r => {
     const opt = document.createElement('option');
     opt.value = r;
@@ -12,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     regionSelect.appendChild(opt);
   });
 
+  // Al cambiar la region, actualiza las comunas disponibles
   regionSelect.addEventListener('change', () => {
     const region = regionSelect.value;
     comunaSelect.innerHTML = '<option value="">-- Seleccione la comuna --</option>';
@@ -26,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Evento que se dispara al enviar el formulario de registro
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     let esValido = true;
@@ -40,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fechaNac = document.getElementById('fecha_nac');
     const direccion = document.getElementById('direccion');
 
+    // Muestra un mensaje de error visual en el grupo del campo correspondiente
     function marcarError(inputElement, mensaje) {
       const group = inputElement.closest('.form-group');
       group.classList.add('has-error');
@@ -54,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
       errorDiv.style.display = 'block';
     }
 
+    // Elimina el estado de error de un campo del formulario
     function quitarError(inputElement) {
       const group = inputElement.closest('.form-group');
       group.classList.remove('has-error');
@@ -64,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    // Validacion: RUN obligatorio y debe tener entre 7 y 9 caracteres (sin puntos ni guion)
     const runLimpio = run.value.trim().replace(/[^0-9kK]/g, '');
     if (!run.value.trim()) {
       marcarError(run, 'El RUN es obligatorio');
@@ -75,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
       quitarError(run);
     }
 
+    // Validacion: nombres obligatorios y maximo 50 caracteres
     if (!nombres.value.trim()) {
       marcarError(nombres, 'Los nombres son obligatorios');
       esValido = false;
@@ -85,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
       quitarError(nombres);
     }
 
+    // Validacion: apellidos obligatorios y maximo 100 caracteres
     if (!apellidos.value.trim()) {
       marcarError(apellidos, 'Los apellidos son obligatorios');
       esValido = false;
@@ -95,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
       quitarError(apellidos);
     }
 
+    // Validacion: correo obligatorio, maximo 100 caracteres y dominio permitido
     if (!correo.value.trim()) {
       marcarError(correo, 'El correo es obligatorio');
       esValido = false;
@@ -108,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
       quitarError(correo);
     }
 
+    // Validacion: confirmacion de correo y que coincida con el correo ingresado
     if (!confirmarCorreo.value.trim()) {
       marcarError(confirmarCorreo, 'Confirme su correo');
       esValido = false;
@@ -118,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
       quitarError(confirmarCorreo);
     }
 
+    // Validacion: contrasena obligatoria y longitud entre 4 y 10 caracteres
     if (!contrasena.value) {
       marcarError(contrasena, 'La contrasena es obligatoria');
       esValido = false;
@@ -128,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
       quitarError(contrasena);
     }
 
+    // Validacion: confirmacion de contrasena y que coincida
     if (!confirmarContrasena.value) {
       marcarError(confirmarContrasena, 'Confirme su contrasena');
       esValido = false;
@@ -138,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
       quitarError(confirmarContrasena);
     }
 
+    // Validacion: seleccion de region obligatoria
     if (!regionSelect.value) {
       marcarError(regionSelect, 'Seleccione una region');
       esValido = false;
@@ -145,6 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
       quitarError(regionSelect);
     }
 
+    // Validacion: seleccion de comuna obligatoria
     if (!comunaSelect.value) {
       marcarError(comunaSelect, 'Seleccione una comuna');
       esValido = false;
@@ -152,6 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
       quitarError(comunaSelect);
     }
 
+    // Validacion: direccion obligatoria y maximo 300 caracteres
     if (!direccion.value.trim()) {
       marcarError(direccion, 'La direccion es obligatoria');
       esValido = false;
@@ -162,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
       quitarError(direccion);
     }
 
+    // Si todos los campos son validos, guarda el nuevo usuario en localStorage
     if (esValido) {
       const nuevoUsuario = {
         run: runLimpio,
@@ -176,10 +198,12 @@ document.addEventListener('DOMContentLoaded', () => {
         direccion: direccion.value.trim()
       };
       const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+      // Verifica que el correo no este registrado previamente
       if (usuarios.some(u => u.correo === nuevoUsuario.correo)) {
         marcarError(correo, 'Este correo ya esta registrado.');
         return;
       }
+      // Verifica que el RUN no este registrado previamente
       if (usuarios.some(u => u.run === nuevoUsuario.run)) {
         marcarError(run, 'Este RUN ya esta registrado.');
         return;

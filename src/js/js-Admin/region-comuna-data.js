@@ -1,3 +1,9 @@
+// ============================================
+// region-comuna-data.js - Datos Geograficos de Chile
+// Objeto global con las regiones y sus comunas correspondientes
+// Utilizado en formularios de registro y perfil
+// ============================================
+
 const REGIONES_COMUNAS = {
   'Arica y Parinacota': ['Arica', 'Camarones', 'Putre', 'General Lagos'],
   'Tarapaca': ['Iquique', 'Alto Hospicio', 'Pozo Almonte', 'Camiña', 'Colchane', 'Huara', 'Pica'],

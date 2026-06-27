@@ -1,3 +1,8 @@
+// ============================================
+// detalle_producto.js - Pagina de Detalle de Producto
+// Muestra la informacion completa de un producto y productos relacionados
+// ============================================
+
 // Ruta base para las imagenes de los productos
 const ASSET_BASE = '../assets/Imagenes_Pasteles/';
 
@@ -32,22 +37,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   const codigo = params.get('codigo');
 
-  // Si no hay codigo, muestra mensaje de error
+  // Si no hay codigo en la URL, muestra mensaje de error
   if (!codigo) {
     document.getElementById('detalle-container').innerHTML = '<p style="padding:40px;text-align:center;">Producto no encontrado</p>';
     return;
   }
 
-  // Busca el producto en la lista
+  // Busca el producto en la lista por su codigo
   const producto = productos.find(p => p.codigo === codigo);
 
-  // Si no existe, muestra mensaje de error
+  // Si el producto no existe, muestra mensaje de error
   if (!producto) {
     document.getElementById('detalle-container').innerHTML = '<p style="padding:40px;text-align:center;">Producto no encontrado</p>';
     return;
   }
 
-  // Renderiza la galeria de imagenes y la informacion del producto
+  // Renderiza la galeria de imagenes y la informacion del producto en el DOM
   const container = document.getElementById('detalle-container');
   container.innerHTML = `
     <div class="detalle-galeria">
@@ -81,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   `;
 
-  // Al hacer clic en "Anadir al carrito", agrega el producto
+  // Evento: al hacer clic en "Anadir al carrito", agrega el producto tantas veces como la cantidad indicada
   document.getElementById('btn-add-cart').addEventListener('click', () => {
     const cantidad = parseInt(document.getElementById('detalle-cantidad').value) || 1;
     for (let i = 0; i < cantidad; i++) {
@@ -89,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Muestra productos relacionados (misma categoria, excluye el actual)
+  // Muestra hasta 5 productos relacionados de la misma categoria (excluye el producto actual)
   const relacionados = productos.filter(p => p.categoria === producto.categoria && p.codigo !== producto.codigo).slice(0, 5);
   const grid = document.getElementById('relacionados-grid');
   if (relacionados.length === 0) {
