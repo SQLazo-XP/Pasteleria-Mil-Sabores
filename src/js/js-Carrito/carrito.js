@@ -13,11 +13,19 @@ function guardarCarrito(items) {
   actualizarUI();
 }
 
+const CANTIDAD_MAX = 99;
+
 function agregarProducto(producto) {
+  if (!producto || !producto.codigo || !producto.nombre || typeof producto.precio !== 'number') {
+    console.warn('Producto inválido:', producto);
+    return;
+  }
   const carrito = obtenerCarrito();
   const existente = carrito.find(p => p.codigo === producto.codigo);
   if (existente) {
-    existente.cantidad += 1;
+    if (existente.cantidad < CANTIDAD_MAX) {
+      existente.cantidad += 1;
+    }
   } else {
     carrito.push({ ...producto, cantidad: 1 });
   }
@@ -33,10 +41,11 @@ function cambiarCantidad(codigo, delta) {
   const carrito = obtenerCarrito();
   const prod = carrito.find(p => p.codigo === codigo);
   if (!prod) return;
-  prod.cantidad += delta;
-  if (prod.cantidad <= 0) {
+  const nueva = prod.cantidad + delta;
+  if (nueva <= 0) {
     return eliminarProducto(codigo);
   }
+  prod.cantidad = Math.min(nueva, CANTIDAD_MAX);
   guardarCarrito(carrito);
 }
 
@@ -104,7 +113,18 @@ document.addEventListener('DOMContentLoaded', () => {
     icono.addEventListener('click', (e) => {
       e.stopPropagation();
       dropdown.classList.toggle('cart-open');
-  actualizarUI();
+      actualizarUI();
+    });
+    document.addEventListener('click', () => dropdown.classList.remove('cart-open'));
+    dropdown.addEventListener('click', (e) => e.stopPropagation());
+  }
+
+  // Boton "Ver Carrito" lleva a la pagina del carrito
+  if (checkoutBtn && !esCarritoPage()) {
+    checkoutBtn.addEventListener('click', () => {
+      window.location.href = getRutaCarrito();
+    });
+  }
 
   // Newsletter: prevenir envio y mostrar mensaje
   var newsletterForms = document.querySelectorAll('.newsletter');
@@ -126,17 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburger.addEventListener('click', function() {
       this.classList.toggle('active');
       navbarLinks.classList.toggle('active');
-    });
-  }
-    });
-    document.addEventListener('click', () => dropdown.classList.remove('cart-open'));
-    dropdown.addEventListener('click', (e) => e.stopPropagation());
-  }
-
-  // Boton "Ver Carrito" lleva a la pagina del carrito
-  if (checkoutBtn && !esCarritoPage()) {
-    checkoutBtn.addEventListener('click', () => {
-      window.location.href = getRutaCarrito();
     });
   }
 

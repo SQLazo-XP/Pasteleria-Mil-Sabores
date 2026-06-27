@@ -23,10 +23,11 @@
   align-items: center;
   gap: 40px;
   border-radius: 16px;
+  overflow: hidden;
 }
 
 .caso-texto {
-  width: 45%;
+  flex: 1;
   min-width: 280px;
 }
 
@@ -101,7 +102,7 @@
   font-size: 1rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .caso {
     flex-direction: column;
     padding: 30px;
@@ -140,5 +141,9 @@
 
   .caso-imagen {
     height: 180px;
+  }
+
+  .caso-texto {
+    min-width: 0;
   }
 }

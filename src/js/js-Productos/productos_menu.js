@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Llena la tarjeta con los datos del producto
       card.innerHTML = `
         <div class="product-image-wrapper">
-          <img src="${producto.imagen}" alt="${producto.nombre}" class="product-image" loading="lazy">
+          <img src="${producto.imagen}" alt="${producto.nombre}" class="product-image" loading="lazy" onerror="this.src='../assets/Imagenes_Pasteles/Torta_Cuadrada_Chocolate.png'">
           <span class="product-category-tag">${producto.categoria}</span>
         </div>
         <div class="product-info">

@@ -1,5 +1,7 @@
+// Ruta base para las imagenes de los productos
 const ASSET_BASE = '../assets/Imagenes_Pasteles/';
 
+// Lista de productos (datos fijos)
 const productos = [
   { "codigo": "TC001", "nombre": "Torta Cuadrada de Chocolate", "precio": 45000, "categoria": "Tortas Cuadradas", "descripcion": "Deliciosa torta de chocolate con capas de ganache y un toque de avellanas.", "imagen": "Torta_Cuadrada_Chocolate.png" },
   { "codigo": "TC002", "nombre": "Torta Cuadrada de Frutas", "precio": 50000, "categoria": "Tortas Cuadradas", "descripcion": "Una mezcla de frutas frescas y crema chantilly.", "imagen": "Torta_Cuadrada_Frutas_Vainilla.png" },
@@ -19,41 +21,48 @@ const productos = [
   { "codigo": "TE002", "nombre": "Torta Especial de Boda", "precio": 60000, "categoria": "Tortas Especiales", "descripcion": "Elegante y deliciosa, torta de boda.", "imagen": "https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=600&q=80" }
 ];
 
+// Devuelve la URL completa de la imagen (local o externa)
 function getImgUrl(imagen) {
   return imagen.startsWith('http') ? imagen : ASSET_BASE + imagen;
 }
 
+// Cuando la pagina carga, busca el producto por codigo y lo muestra
 document.addEventListener('DOMContentLoaded', () => {
+  // Obtiene el codigo del producto desde la URL (?codigo=XXX)
   const params = new URLSearchParams(window.location.search);
   const codigo = params.get('codigo');
 
+  // Si no hay codigo, muestra mensaje de error
   if (!codigo) {
     document.getElementById('detalle-container').innerHTML = '<p style="padding:40px;text-align:center;">Producto no encontrado</p>';
     return;
   }
 
+  // Busca el producto en la lista
   const producto = productos.find(p => p.codigo === codigo);
 
+  // Si no existe, muestra mensaje de error
   if (!producto) {
     document.getElementById('detalle-container').innerHTML = '<p style="padding:40px;text-align:center;">Producto no encontrado</p>';
     return;
   }
 
+  // Renderiza la galeria de imagenes y la informacion del producto
   const container = document.getElementById('detalle-container');
   container.innerHTML = `
     <div class="detalle-galeria">
       <div class="detalle-imagen-principal">
-        <img src="${getImgUrl(producto.imagen)}" alt="${producto.nombre}">
+        <img src="${getImgUrl(producto.imagen)}" alt="${producto.nombre}" onerror="this.src='../assets/Imagenes_Pasteles/Torta_Cuadrada_Chocolate.png'">
       </div>
       <div class="detalle-miniaturas">
         <div class="detalle-miniatura activo">
-          <img src="${getImgUrl(producto.imagen)}" alt="${producto.nombre}">
+          <img src="${getImgUrl(producto.imagen)}" alt="${producto.nombre}" onerror="this.src='../assets/Imagenes_Pasteles/Torta_Cuadrada_Chocolate.png'">
         </div>
         <div class="detalle-miniatura">
-          <img src="${getImgUrl(producto.imagen)}" alt="${producto.nombre}">
+          <img src="${getImgUrl(producto.imagen)}" alt="${producto.nombre}" onerror="this.src='../assets/Imagenes_Pasteles/Torta_Cuadrada_Chocolate.png'">
         </div>
         <div class="detalle-miniatura">
-          <img src="${getImgUrl(producto.imagen)}" alt="${producto.nombre}">
+          <img src="${getImgUrl(producto.imagen)}" alt="${producto.nombre}" onerror="this.src='../assets/Imagenes_Pasteles/Torta_Cuadrada_Chocolate.png'">
         </div>
       </div>
     </div>
@@ -72,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   `;
 
+  // Al hacer clic en "Anadir al carrito", agrega el producto
   document.getElementById('btn-add-cart').addEventListener('click', () => {
     const cantidad = parseInt(document.getElementById('detalle-cantidad').value) || 1;
     for (let i = 0; i < cantidad; i++) {
@@ -79,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Muestra productos relacionados (misma categoria, excluye el actual)
   const relacionados = productos.filter(p => p.categoria === producto.categoria && p.codigo !== producto.codigo).slice(0, 5);
   const grid = document.getElementById('relacionados-grid');
   if (relacionados.length === 0) {
@@ -86,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     grid.innerHTML = relacionados.map(p => `
       <div class="relacionado-item" onclick="window.location.href='detalle_producto.html?codigo=${p.codigo}'">
-        <img src="${getImgUrl(p.imagen)}" alt="${p.nombre}" loading="lazy">
+        <img src="${getImgUrl(p.imagen)}" alt="${p.nombre}" loading="lazy" onerror="this.src='../assets/Imagenes_Pasteles/Torta_Cuadrada_Chocolate.png'">
         <div class="relacionado-nombre">${p.nombre}</div>
         <div class="relacionado-precio">$${p.precio.toLocaleString('es-CL')}</div>
       </div>

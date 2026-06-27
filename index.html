@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Pacifico&display=swap" rel="stylesheet">
     <!-- Estilos principales -->
-    <link rel="stylesheet" href="src/css/css-Home/home.css?v=2">
+    <link rel="stylesheet" href="src/css/css-Home/home.css?v=19">
     <!-- Iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   </head>
@@ -25,8 +25,20 @@
           <li><a href="src/components/productos.html">Productos</a></li>
           <li><a href="src/components/nosotros.html">Nosotros</a></li>
           <li><a href="src/components/blogs.html">Blogs</a></li>
-          <li><a href="src/components/contacto.html">Contacto</a></li>
+          <li><a href="src/components/contactos.html">Contacto</a></li>
         </ul>
+        <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        <div class="cart-wrapper">
+          <div class="cart-icon" id="cart-icon">🛒<span class="cart-badge" id="cart-count">0</span></div>
+          <div class="cart-dropdown" id="cart-dropdown">
+            <div class="cart-dropdown-header">Carrito de Compras</div>
+            <div class="cart-items" id="cart-items"></div>
+            <div class="cart-dropdown-footer">
+              <span>Total: $<span id="cart-total">0</span></span>
+              <button class="cart-checkout-btn">Ver Carrito</button>
+            </div>
+          </div>
+        </div>
       </nav>
     </header>
 
@@ -41,6 +53,10 @@
           <div>
             <a href="src/components/productos.html" class="btn">Ver Productos</a>
           </div>
+        </div>
+        <div class="hero-auth">
+          <a href="src/components/inicio_sesion.html" class="hero-auth-btn">Iniciar Sesión</a>
+          <a href="src/components/registro_usuario.html" class="hero-auth-btn hero-auth-register">Registrarse</a>
         </div>
         <div class="second-div-menu">
           <div>
@@ -103,6 +119,7 @@
     </footer>
 
     <!-- JavaScript -->
+    <script src="src/js/js-Carrito/carrito.js" defer></script>
     <script src="src/js/js-Home/home.js" defer></script>
   </body>
 </html>

@@ -5,6 +5,7 @@
 .cart-wrapper {
   position: relative;
   margin-left: auto;
+  margin-right: 60px;
   display: flex;
   align-items: center;
 }
@@ -203,5 +204,16 @@
   .cart-dropdown {
     width: 300px;
     right: -10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cart-wrapper {
+    margin-right: 0;
+  }
+
+  .cart-dropdown {
+    width: 280px;
+    right: 0;
   }
 }

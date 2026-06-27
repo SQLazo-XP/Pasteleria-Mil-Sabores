@@ -150,3 +150,19 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 480px) {
+  .nosotros-hero h1 {
+    font-size: 28px;
+  }
+
+  .nosotros-hero p {
+    font-size: 15px;
+  }
+
+  .nosotros-historia h2,
+  .nosotros-valores h2,
+  .nosotros-equipo h2 {
+    font-size: 22px;
+  }
+}

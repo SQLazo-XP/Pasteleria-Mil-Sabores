@@ -394,3 +394,34 @@
         position: static;
     }
 }
+
+@media (max-width: 480px) {
+    .carrito-page {
+        padding: 0 12px;
+    }
+
+    .carrito-page-title {
+        font-size: 1.6rem;
+    }
+
+    .carrito-row {
+        padding: 12px 14px;
+    }
+
+    .carrito-producto-img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .carrito-producto-nombre {
+        font-size: 0.85rem;
+    }
+
+    .carrito-resumen {
+        padding: 20px;
+    }
+
+    .resumen-total-precio {
+        font-size: 1.2rem;
+    }
+}

@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
       card.style.cursor = 'pointer';
       card.innerHTML = `
         <div class="popular-img-container">
-          <img src="${getImgUrl(producto.imagen)}" alt="${producto.nombre}" loading="lazy">
+          <img src="${getImgUrl(producto.imagen)}" alt="${producto.nombre}" loading="lazy" onerror="this.src='src/assets/Imagenes_Pasteles/Torta_Cuadrada_Chocolate.png'">
           <span class="popular-category-tag">${producto.categoria}</span>
         </div>
         <div class="popular-info">

@@ -38,6 +38,7 @@
   display: flex;
   gap: 12px;
   padding: 18px 0;
+  flex-wrap: wrap;
 }
 
 .detalle-miniatura {
@@ -219,7 +220,7 @@
 
 /* Responsive */
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .detalle-container {
     flex-direction: column;
     gap: 35px;

@@ -32,34 +32,6 @@
 .navbar-links li a:hover {
   background: var(--pink-hover);
 }
-
-/* Botones de autenticacion */
-.navbar-links li a.nav-auth-btn {
-  padding: 8px 18px;
-  margin: 8px 4px;
-  border-radius: 8px;
-  border: 2px solid var(--chocolate);
-  color: var(--chocolate);
-  font-size: 0.9rem;
-  background: transparent;
-}
-
-.navbar-links li a.nav-auth-btn:hover {
-  background: var(--chocolate);
-  color: var(--white);
-}
-
-.navbar-links li a.nav-register-btn {
-  background: var(--chocolate);
-  color: var(--white);
-}
-
-.navbar-links li a.nav-register-btn:hover {
-  background: var(--brown-dark);
-  border-color: var(--brown-dark);
-  color: var(--white);
-}
-
 .logo-link {
   display: flex;
   align-items: center;
@@ -111,11 +83,6 @@
     gap: 8px;
   }
 
-  .hamburger {
-    display: block;
-    margin-left: auto;
-  }
-
   .navbar-links {
     display: none;
     flex-direction: column;
@@ -133,18 +100,16 @@
     text-align: center;
   }
 
+  .hamburger {
+    display: block;
+    margin-left: auto;
+  }
+
   .navbar-links li a {
     padding: 12px 14px;
     font-size: 0.9rem;
     width: 100%;
   }
-
-  .navbar-links li a.nav-auth-btn {
-    margin: 4px auto;
-    width: auto;
-    display: inline-block;
-  }
-
   .logoMenu {
     width: 65px;
   }

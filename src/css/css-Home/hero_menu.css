@@ -2,7 +2,44 @@
    hero_menu.css - Portada principal del inicio
    ============================================ */
 
+.hero-auth {
+  position: absolute;
+  top: 20px;
+  right: 85px;
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+.hero-auth-btn {
+  padding: 8px 22px;
+  border-radius: 8px;
+  border: 2px solid var(--chocolate);
+  color: var(--chocolate);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: var(--transition);
+  background: transparent;
+}
+
+.hero-auth-btn:hover {
+  background: var(--chocolate);
+  color: var(--white);
+}
+
+.hero-auth-register {
+  background: var(--chocolate);
+  color: var(--white);
+}
+
+.hero-auth-register:hover {
+  background: var(--brown-dark);
+  border-color: var(--brown-dark);
+}
+
 .hero {
+  position: relative;
   width: 100%;
   min-height: calc(100vh - 80px);
   display: flex;
@@ -80,6 +117,14 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .hero-auth {
+    position: relative;
+    top: auto;
+    right: auto;
+    justify-content: center;
+    margin: 6px 0;
+  }
+
   .hero {
     min-height: auto;
     padding: 20px 16px;
@@ -89,7 +134,7 @@
     flex-direction: column;
     width: 100%;
     padding: 36px 24px;
-    gap: 28px;
+    gap: 20px;
   }
 
   .first-div-menu {

@@ -9,11 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/css-Home/home.css">
     <link rel="stylesheet" href="../css/css-Registro_Usuario/registro_usuario.css">
-    <link rel="stylesheet" href="../css/css-Home/footer_menu.css">
+    <link rel="stylesheet" href="../css/css-Home/footers_menu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   </head>
   <body>
 
+    <!-- ===== BARRA DE NAVEGACION ===== -->
     <header>
       <nav class="navbar">
         <a href="../../index.html" class="logo-link">
@@ -24,11 +25,24 @@
           <li><a href="./productos.html">Productos</a></li>
           <li><a href="./nosotros.html">Nosotros</a></li>
           <li><a href="./blogs.html">Blogs</a></li>
-          <li><a href="./contacto.html">Contacto</a></li>
+          <li><a href="./contactos.html">Contacto</a></li>
         </ul>
+        <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        <div class="cart-wrapper">
+          <div class="cart-icon" id="cart-icon">🛒<span class="cart-badge" id="cart-count">0</span></div>
+          <div class="cart-dropdown" id="cart-dropdown">
+            <div class="cart-dropdown-header">Carrito de Compras</div>
+            <div class="cart-items" id="cart-items"></div>
+            <div class="cart-dropdown-footer">
+              <span>Total: $<span id="cart-total">0</span></span>
+              <button class="cart-checkout-btn">Ver Carrito</button>
+            </div>
+          </div>
+        </div>
       </nav>
     </header>
 
+    <!-- ===== FORMULARIO DE REGISTRO ===== -->
     <section class="register-section">
       <div class="register-card">
         <div class="form-header-bar">
@@ -86,6 +100,7 @@
       </div>
     </section>
 
+    <!-- ===== PIE DE PAGINA ===== -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-left">
@@ -124,6 +139,7 @@
       </div>
     </footer>
 
+    <script src="../js/js-Carrito/carrito.js" defer></script>
     <script src="../js/js-Registro_Usuario/registro_usuario.js" defer></script>
   </body>
 </html>
