@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrador - Pastelería Mil Sabores</title>
+  <link rel="stylesheet" href="../css/css-Admin/admin-home.css">
+</head>
+<body>
+
+<div class="container">
+
+  <aside class="sidebar">
+    <div class="logo">Pastelería<br>Mil Sabores</div>
+    <nav>
+      <a href="./admin-home.html">Dashboard</a>
+      <a href="./usuarios.html">Usuarios</a>
+      <a href="#">Inventario</a>
+      <a href="#">Reportes</a>
+      <a href="#">Empleados</a>
+      <a href="#">Clientes</a>
+    </nav>
+    <div class="bottom-menu">
+      <a href="#">Configuración</a>
+      <a href="#">Ayuda</a>
+      <a href="#" onclick="localStorage.removeItem('usuario_sesion'); window.location.href='../../index.html'; return false;">Cerrar Sesión</a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <header>
+      <h1>¡Hola Administrador!</h1>
+    </header>
+    <section class="top-panel"></section>
+    <section class="bottom-panel"></section>
+  </main>
+
+</div>
+
+<script src="../js/js-Admin/auth-check.js" defer></script>
+</body>
+</html>

@@ -12,7 +12,6 @@
 </head>
 <body>
 
-    <!-- ===== BARRA DE NAVEGACION ===== -->
     <header>
       <nav class="navbar">
         <a href="../../index.html" class="logo-link">
@@ -40,7 +39,6 @@
       </nav>
     </header>
 
-    <!-- ===== CONTENIDO PRINCIPAL ===== -->
     <main class="contactos-main">
 
         <div class="contactos-logo">
@@ -49,23 +47,24 @@
 
         <h1 class="contactos-nombre">Pastelería Mil Sabores</h1>
 
-        <!-- ===== FORMULARIO DE CONTACTO ===== -->
         <section class="contactos-formulario">
 
             <div class="contactos-titulo-form">
                 FORMULARIO DE CONTACTOS
             </div>
 
-            <form id="contacto-form">
+            <form id="contacto-form" novalidate>
 
-                <label>Nombre Completo</label>
-                <input type="text" placeholder="Tu nombre" required>
+                <label for="contacto-nombre">Nombre Completo</label>
+                <input type="text" id="contacto-nombre" placeholder="Tu nombre" required>
+                <div class="contacto-error" id="error-nombre"></div>
 
-                <label>Correo</label>
-                <input type="email" placeholder="tucorreo@ejemplo.com" required>
+                <label for="contacto-correo">Correo</label>
+                <input type="email" id="contacto-correo" placeholder="tucorreo@ejemplo.com" required>
+                <div class="contacto-error" id="error-correo"></div>
 
-                <label>Contenido</label>
-                <textarea placeholder="Escribe tu mensaje aquí..." required></textarea>
+                <label for="contacto-mensaje">Contenido</label>
+                <textarea id="contacto-mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
 
                 <button type="submit" class="contactos-btn">
                     ENVIAR MENSAJE
@@ -77,7 +76,6 @@
 
     </main>
 
-    <!-- ===== PIE DE PAGINA ===== -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-left">
@@ -116,12 +114,6 @@
     </footer>
 
     <script src="../js/js-Carrito/carrito.js" defer></script>
-    <script>
-      document.getElementById('contacto-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Mensaje enviado correctamente. ¡Gracias por contactarnos!');
-        this.reset();
-      });
-    </script>
+    <script src="../js/js-Contacto/contacto.js" defer></script>
 </body>
 </html>

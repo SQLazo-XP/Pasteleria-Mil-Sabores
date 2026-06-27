@@ -131,6 +131,14 @@
   color: var(--white);
 }
 
+.contacto-error {
+  color: #c62828;
+  font-size: 0.78rem;
+  font-weight: bold;
+  margin-top: 4px;
+  display: none;
+}
+
 @media (max-width: 768px) {
   .contactos-formulario {
     width: 100%;

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Usuario - Pastelería Mil Sabores</title>
+    <link rel="stylesheet" href="../css/css-Admin/nuevo-usuario.css">
+</head>
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>Pastelería<br>Mil Sabores</h2>
+        </div>
+
+        <nav>
+            <a href="./admin-home.html">Dashboard</a>
+            <a href="#">Órdenes</a>
+            <a href="#" class="active">Inventario</a>
+            <a href="#">Reportes</a>
+            <a href="#">Empleados</a>
+            <a href="./usuarios.html">Usuarios</a>
+            <a href="#" onclick="localStorage.removeItem('usuario_sesion'); window.location.href='../../index.html'; return false;" style="margin-top:auto;padding-top:20px;border-top:1px solid #ddd;">Cerrar Sesion</a>
+        </nav>
+    </aside>
+
+    <main class="contenido">
+
+        <h1>NUEVO USUARIO</h1>
+
+        <div class="formulario-container">
+
+            <div class="titulo-form">
+                Registro de usuario
+            </div>
+
+            <form id="form-nuevo-usuario" novalidate>
+
+                <label>Nombre Completo</label>
+                <input type="text" id="nombre" placeholder="Ej. Juan Pérez Gómez" required maxlength="100">
+
+                <label>Correo</label>
+                <input type="email" id="correo" placeholder="correo@ejemplo.com" required>
+
+                <label>Confirmar Correo</label>
+                <input type="email" id="confirmar-correo" placeholder="Repite tu correo electrónico" required>
+
+                <label>Contraseña</label>
+                <input type="password" id="contrasena" placeholder="Minimo 4 caracteres" required>
+
+                <label>Confirmar Contraseña</label>
+                <input type="password" id="confirmar-contrasena" placeholder="Repite tu contrasena" required>
+
+                <label>Rol</label>
+                <select id="rol">
+                    <option value="Cliente">Cliente</option>
+                    <option value="Administrador">Administrador</option>
+                </select>
+
+                <div class="btn-container">
+                    <button type="submit">REGISTRAR</button>
+                </div>
+
+            </form>
+
+            <script>
+            document.getElementById('form-nuevo-usuario').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const nombre = document.getElementById('nombre').value.trim();
+                const correo = document.getElementById('correo').value.trim().toLowerCase();
+                const confirmarCorreo = document.getElementById('confirmar-correo').value.trim().toLowerCase();
+                const contrasena = document.getElementById('contrasena').value;
+                const confirmarContrasena = document.getElementById('confirmar-contrasena').value;
+                const rol = document.getElementById('rol').value;
+
+                if (!nombre) { alert('El nombre es obligatorio.'); return; }
+                if (nombre.length > 100) { alert('Maximo 100 caracteres.'); return; }
+                if (!correo) { alert('El correo es obligatorio.'); return; }
+                if (correo !== confirmarCorreo) { alert('Los correos no coinciden.'); return; }
+                if (!contrasena || contrasena.length < 4 || contrasena.length > 10) { alert('La contrasena debe tener entre 4 y 10 caracteres.'); return; }
+                if (contrasena !== confirmarContrasena) { alert('Las contrasenas no coinciden.'); return; }
+
+                const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+                if (usuarios.some(u => u.correo === correo)) {
+                    alert('Este correo ya esta registrado.');
+                    return;
+                }
+
+                usuarios.push({ nombre, correo, contrasena, rol });
+                localStorage.setItem('usuarios', JSON.stringify(usuarios));
+                alert('Usuario creado exitosamente.');
+                window.location.href = './usuarios.html';
+            });
+            </script>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="../js/js-Admin/auth-check.js" defer></script>
+</body>
+</html>

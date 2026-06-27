@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Producto - Administrador | Pastelería Mil Sabores</title>
+    <link rel="stylesheet" href="../css/css-Admin/admin-productos.css">
+</head>
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+        <div class="logo"><h2>Pastelería<br>Mil Sabores</h2></div>
+        <nav>
+            <a href="./admin-home.html">Dashboard</a>
+            <a href="./listado-productos.html">Productos</a>
+            <a href="./usuarios.html">Usuarios</a>
+            <a href="#">Inventario</a>
+            <a href="#">Reportes</a>
+            <a href="#">Clientes</a>
+            <a href="#" onclick="localStorage.removeItem('usuario_sesion'); window.location.href='../../index.html'; return false;" style="margin-top:auto;padding-top:20px;border-top:1px solid #ddd;">Cerrar Sesion</a>
+        </nav>
+    </aside>
+
+    <main class="contenido">
+
+        <h1 class="page-title">Editar Producto</h1>
+
+        <div class="form-card">
+            <div class="form-card-header">Editar Producto</div>
+
+            <form id="form-producto" novalidate>
+                <label>Código</label>
+                <input type="text" id="codigo" readonly style="background:#f4f4f4;cursor:not-allowed;">
+
+                <label>Nombre</label>
+                <input type="text" id="nombre" required>
+
+                <label>Categoría</label>
+                <select id="categoria" required>
+                    <option value="">Seleccionar categoría</option>
+                    <option value="Tortas Cuadradas">Tortas Cuadradas</option>
+                    <option value="Tortas Circulares">Tortas Circulares</option>
+                    <option value="Postres Individuales">Postres Individuales</option>
+                    <option value="Sin Azúcar">Sin Azúcar</option>
+                    <option value="Pastelería Tradicional">Pastelería Tradicional</option>
+                    <option value="Sin Gluten">Sin Gluten</option>
+                    <option value="Vegano">Vegano</option>
+                    <option value="Tortas Especiales">Tortas Especiales</option>
+                </select>
+
+                <label>Precio</label>
+                <input type="number" id="precio" min="1" required>
+
+                <label>Descripción</label>
+                <textarea id="descripcion" rows="4"></textarea>
+
+                <div class="btn-row">
+                    <button type="submit" class="btn-guardar">Guardar Cambios</button>
+                    <button type="button" class="btn-cancelar" onclick="window.location.href='./listado-productos.html'">Cancelar</button>
+                </div>
+            </form>
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const codigo = params.get('codigo');
+const productos = JSON.parse(localStorage.getItem('productos')) || [];
+const idx = productos.findIndex(p => p.codigo === codigo);
+const producto = productos[idx];
+
+if (producto) {
+    document.getElementById('codigo').value = producto.codigo;
+    document.getElementById('nombre').value = producto.nombre;
+    document.getElementById('categoria').value = producto.categoria;
+    document.getElementById('precio').value = producto.precio;
+    document.getElementById('descripcion').value = producto.descripcion || '';
+} else {
+    document.querySelector('.form-card').innerHTML = '<p style="padding:40px;text-align:center;">Producto no encontrado.</p>';
+}
+
+document.getElementById('form-producto').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value.trim();
+    const precio = document.getElementById('precio').value;
+    if (!nombre || !precio) {
+        alert('Nombre y precio son obligatorios.');
+        return;
+    }
+    const productos = JSON.parse(localStorage.getItem('productos')) || [];
+    if (productos[idx]) {
+        productos[idx].nombre = nombre;
+        productos[idx].categoria = document.getElementById('categoria').value;
+        productos[idx].precio = parseInt(precio);
+        productos[idx].descripcion = document.getElementById('descripcion').value.trim();
+        localStorage.setItem('productos', JSON.stringify(productos));
+    }
+    alert(`Producto "${nombre}" actualizado exitosamente.`);
+    window.location.href = './listado-productos.html';
+});
+</script>
+
+<script src="../js/js-Admin/auth-check.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario - Administrador | Pastelería Mil Sabores</title>
+    <link rel="stylesheet" href="../css/css-Admin/admin-productos.css">
+</head>
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+        <div class="logo"><h2>Pastelería<br>Mil Sabores</h2></div>
+        <nav>
+            <a href="./admin-home.html">Dashboard</a>
+            <a href="./listado-productos.html">Productos</a>
+            <a href="./usuarios.html" class="active">Usuarios</a>
+            <a href="#">Inventario</a>
+            <a href="#">Reportes</a>
+            <a href="#">Clientes</a>
+            <a href="#" onclick="localStorage.removeItem('usuario_sesion'); window.location.href='../../index.html'; return false;" style="margin-top:auto;padding-top:20px;border-top:1px solid #ddd;">Cerrar Sesion</a>
+        </nav>
+    </aside>
+
+    <main class="contenido">
+
+        <h1 class="page-title">Editar Usuario</h1>
+
+        <div class="form-card">
+            <div class="form-card-header">Editar Usuario</div>
+
+            <form id="form-usuario" novalidate>
+                <label>Nombre Completo</label>
+                <input type="text" id="nombre" required maxlength="100">
+
+                <label>Correo</label>
+                <input type="email" id="correo" required>
+
+                <label>Rol</label>
+                <select id="rol">
+                    <option value="Cliente">Cliente</option>
+                    <option value="Administrador">Administrador</option>
+                </select>
+
+                <div class="btn-row">
+                    <button type="submit" class="btn-guardar">Guardar Cambios</button>
+                    <button type="button" class="btn-cancelar" onclick="window.location.href='./usuarios.html'">Cancelar</button>
+                </div>
+            </form>
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const id = parseInt(params.get('id'));
+const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+const usuario = usuarios[id];
+
+if (usuario) {
+    document.getElementById('nombre').value = usuario.nombre;
+    document.getElementById('correo').value = usuario.correo;
+    document.getElementById('rol').value = usuario.rol;
+} else {
+    document.querySelector('.form-card').innerHTML = '<p style="padding:40px;text-align:center;">Usuario no encontrado.</p>';
+}
+
+document.getElementById('form-usuario').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value.trim();
+    if (!nombre) { alert('El nombre es obligatorio.'); return; }
+    if (nombre.length > 100) { alert('El nombre debe tener maximo 100 caracteres.'); return; }
+    const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+    if (usuarios[id]) {
+        usuarios[id].nombre = nombre;
+        usuarios[id].correo = document.getElementById('correo').value.trim().toLowerCase();
+        usuarios[id].rol = document.getElementById('rol').value;
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    }
+    alert('Usuario actualizado exitosamente.');
+    window.location.href = './usuarios.html';
+});
+</script>
+
+<script src="../js/js-Admin/auth-check.js" defer></script>
+</body>
+</html>

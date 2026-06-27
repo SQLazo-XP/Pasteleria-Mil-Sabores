@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Usuario - Administrador | Pastelería Mil Sabores</title>
+    <link rel="stylesheet" href="../css/css-Admin/admin-productos.css">
+</head>
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+        <div class="logo"><h2>Pastelería<br>Mil Sabores</h2></div>
+        <nav>
+            <a href="./admin-home.html">Dashboard</a>
+            <a href="./listado-productos.html">Productos</a>
+            <a href="./usuarios.html" class="active">Usuarios</a>
+            <a href="#">Inventario</a>
+            <a href="#">Reportes</a>
+            <a href="#">Clientes</a>
+            <a href="#" onclick="localStorage.removeItem('usuario_sesion'); window.location.href='../../index.html'; return false;" style="margin-top:auto;padding-top:20px;border-top:1px solid #ddd;">Cerrar Sesion</a>
+        </nav>
+    </aside>
+
+    <main class="contenido">
+
+        <h1 class="page-title">Detalle del Usuario</h1>
+
+        <div class="detail-card" id="detail-container">
+            <p style="text-align:center;padding:40px;color:#999;">Cargando...</p>
+        </div>
+
+        <div class="btn-row" style="margin-top:20px;">
+            <button class="btn-cancelar" onclick="window.location.href='./usuarios.html'">← Volver</button>
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const id = parseInt(params.get('id'));
+const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+const usuario = usuarios[id];
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('detail-container');
+    if (!usuario) {
+        container.innerHTML = '<p style="text-align:center;padding:40px;color:#c62828;">Usuario no encontrado.</p>';
+        return;
+    }
+    container.innerHTML = `
+        <div class="detail-field">
+            <span class="detail-label">Nombre</span>
+            <span class="detail-value">${usuario.nombre}</span>
+        </div>
+        <div class="detail-field">
+            <span class="detail-label">Correo</span>
+            <span class="detail-value">${usuario.correo}</span>
+        </div>
+        <div class="detail-field">
+            <span class="detail-label">Rol</span>
+            <span class="detail-value">${usuario.rol}</span>
+        </div>
+        <div class="btn-row" style="margin-top:24px;">
+            <button class="btn-nuevo" onclick="window.location.href='editar-usuario.html?id=${id}'">Editar</button>
+        </div>
+    `;
+});
+</script>
+
+<script src="../js/js-Admin/auth-check.js" defer></script>
+</body>
+</html>
