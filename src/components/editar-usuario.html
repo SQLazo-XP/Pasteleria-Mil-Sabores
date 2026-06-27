@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Usuario - Administrador | Pastelería Mil Sabores</title>
+    <title>Editar Usuario - Administrador | Pasteleria Mil Sabores</title>
     <link rel="stylesheet" href="../css/css-Admin/admin-productos.css">
+    <script src="../js/js-Admin/region-comuna-data.js"></script>
 </head>
 <body>
 
 <div class="container">
 
     <aside class="sidebar">
-        <div class="logo"><h2>Pastelería<br>Mil Sabores</h2></div>
+        <div class="logo"><h2>Pasteleria<br>Mil Sabores</h2></div>
         <nav>
             <a href="./admin-home.html">Dashboard</a>
             <a href="./listado-productos.html">Productos</a>
             <a href="./usuarios.html" class="active">Usuarios</a>
             <a href="#">Inventario</a>
             <a href="#">Reportes</a>
-            <a href="#">Clientes</a>
             <a href="#" onclick="localStorage.removeItem('usuario_sesion'); window.location.href='../../index.html'; return false;" style="margin-top:auto;padding-top:20px;border-top:1px solid #ddd;">Cerrar Sesion</a>
         </nav>
     </aside>
@@ -31,17 +31,40 @@
             <div class="form-card-header">Editar Usuario</div>
 
             <form id="form-usuario" novalidate>
-                <label>Nombre Completo</label>
-                <input type="text" id="nombre" required maxlength="100">
+                <label>RUN</label>
+                <input type="text" id="run" readonly style="background:#f4f4f4;cursor:not-allowed;">
 
-                <label>Correo</label>
-                <input type="email" id="correo" required>
+                <label>Nombres <span style="color:#c62828;">*</span></label>
+                <input type="text" id="nombres" maxlength="50" required>
 
-                <label>Rol</label>
-                <select id="rol">
+                <label>Apellidos <span style="color:#c62828;">*</span></label>
+                <input type="text" id="apellidos" maxlength="100" required>
+
+                <label>Correo <span style="color:#c62828;">*</span></label>
+                <input type="email" id="correo" maxlength="100" required>
+
+                <label>Fecha de Nacimiento</label>
+                <input type="date" id="fecha_nac">
+
+                <label>Tipo de Usuario <span style="color:#c62828;">*</span></label>
+                <select id="tipo" required>
                     <option value="Cliente">Cliente</option>
                     <option value="Administrador">Administrador</option>
+                    <option value="Vendedor">Vendedor</option>
                 </select>
+
+                <label>Region <span style="color:#c62828;">*</span></label>
+                <select id="region" required>
+                    <option value="">-- Seleccione la region --</option>
+                </select>
+
+                <label>Comuna <span style="color:#c62828;">*</span></label>
+                <select id="comuna" required disabled>
+                    <option value="">-- Seleccione la comuna --</option>
+                </select>
+
+                <label>Direccion <span style="color:#c62828;">*</span></label>
+                <input type="text" id="direccion" maxlength="300" required>
 
                 <div class="btn-row">
                     <button type="submit" class="btn-guardar">Guardar Cambios</button>
@@ -55,29 +78,84 @@
 </div>
 
 <script>
+const regionSelect = document.getElementById('region');
+const comunaSelect = document.getElementById('comuna');
+
+Object.keys(REGIONES_COMUNAS).forEach(r => {
+    const opt = document.createElement('option');
+    opt.value = r;
+    opt.textContent = r;
+    regionSelect.appendChild(opt);
+});
+
+regionSelect.addEventListener('change', () => {
+    const region = regionSelect.value;
+    comunaSelect.innerHTML = '<option value="">-- Seleccione la comuna --</option>';
+    comunaSelect.disabled = !region;
+    if (region && REGIONES_COMUNAS[region]) {
+        REGIONES_COMUNAS[region].forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c;
+            opt.textContent = c;
+            comunaSelect.appendChild(opt);
+        });
+    }
+});
+
 const params = new URLSearchParams(window.location.search);
 const id = parseInt(params.get('id'));
 const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
 const usuario = usuarios[id];
 
 if (usuario) {
-    document.getElementById('nombre').value = usuario.nombre;
-    document.getElementById('correo').value = usuario.correo;
-    document.getElementById('rol').value = usuario.rol;
+    document.getElementById('run').value = usuario.run || '';
+    document.getElementById('nombres').value = usuario.nombres || '';
+    document.getElementById('apellidos').value = usuario.apellidos || '';
+    document.getElementById('correo').value = usuario.correo || '';
+    document.getElementById('fecha_nac').value = usuario.fecha_nac || '';
+    document.getElementById('tipo').value = usuario.tipo || 'Cliente';
+    document.getElementById('direccion').value = usuario.direccion || '';
+
+    if (usuario.region) {
+        document.getElementById('region').value = usuario.region;
+        regionSelect.dispatchEvent(new Event('change'));
+        if (usuario.comuna) {
+            document.getElementById('comuna').value = usuario.comuna;
+        }
+    }
 } else {
     document.querySelector('.form-card').innerHTML = '<p style="padding:40px;text-align:center;">Usuario no encontrado.</p>';
 }
 
 document.getElementById('form-usuario').addEventListener('submit', function(e) {
     e.preventDefault();
-    const nombre = document.getElementById('nombre').value.trim();
-    if (!nombre) { alert('El nombre es obligatorio.'); return; }
-    if (nombre.length > 100) { alert('El nombre debe tener maximo 100 caracteres.'); return; }
+    const nombres = document.getElementById('nombres').value.trim();
+    const apellidos = document.getElementById('apellidos').value.trim();
+    const correo = document.getElementById('correo').value.trim().toLowerCase();
+    const tipo = document.getElementById('tipo').value;
+    const region = document.getElementById('region').value;
+    const comuna = document.getElementById('comuna').value;
+    const direccion = document.getElementById('direccion').value.trim();
+
+    if (!nombres || nombres.length > 50) { alert('Nombres obligatorio, maximo 50 caracteres.'); return; }
+    if (!apellidos || apellidos.length > 100) { alert('Apellidos obligatorio, maximo 100 caracteres.'); return; }
+    if (!correo || correo.length > 100) { alert('Correo obligatorio.'); return; }
+    const dominios = ['@inacap.cl', '@profesor.inacap.cl', '@gmail.com'];
+    if (!dominios.some(d => correo.endsWith(d))) { alert('Solo correos @inacap.cl, @profesor.inacap.cl o @gmail.com.'); return; }
+    if (!region) { alert('Seleccione una region.'); return; }
+    if (!comuna) { alert('Seleccione una comuna.'); return; }
+    if (!direccion || direccion.length > 300) { alert('Direccion obligatorio, maximo 300 caracteres.'); return; }
+
     const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
     if (usuarios[id]) {
-        usuarios[id].nombre = nombre;
-        usuarios[id].correo = document.getElementById('correo').value.trim().toLowerCase();
-        usuarios[id].rol = document.getElementById('rol').value;
+        usuarios[id].nombres = nombres;
+        usuarios[id].apellidos = apellidos;
+        usuarios[id].correo = correo;
+        usuarios[id].fecha_nac = document.getElementById('fecha_nac').value;
+        usuarios[id].tipo = tipo;
+        usuarios[id].region = region;
+        usuarios[id].comuna = comuna;
+        usuarios[id].direccion = direccion;
         localStorage.setItem('usuarios', JSON.stringify(usuarios));
     }
     alert('Usuario actualizado exitosamente.');

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos - Administrador | Pastelería Mil Sabores</title>
+    <title>Productos - Administrador | Pasteleria Mil Sabores</title>
     <link rel="stylesheet" href="../css/css-Admin/admin-productos.css">
 </head>
 <body>
@@ -11,14 +11,13 @@
 <div class="container">
 
     <aside class="sidebar">
-        <div class="logo"><h2>Pastelería<br>Mil Sabores</h2></div>
-        <nav>
+        <div class="logo"><h2>Pasteleria<br>Mil Sabores</h2></div>
+        <nav id="sidebar-nav">
             <a href="./admin-home.html">Dashboard</a>
             <a href="#" class="active">Productos</a>
             <a href="./usuarios.html">Usuarios</a>
             <a href="#">Inventario</a>
             <a href="#">Reportes</a>
-            <a href="#">Clientes</a>
             <a href="#" onclick="localStorage.removeItem('usuario_sesion'); window.location.href='../../index.html'; return false;" style="margin-top:auto;padding-top:20px;border-top:1px solid #ddd;">Cerrar Sesion</a>
         </nav>
     </aside>
@@ -40,10 +39,11 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Código</th>
+                        <th>Codigo</th>
                         <th>Nombre</th>
-                        <th>Categoría</th>
+                        <th>Categoria</th>
                         <th>Precio</th>
+                        <th>Stock</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -60,22 +60,22 @@
 
 <script>
 const PRODUCTOS_SEMILLA = [
-    { codigo: 'TC001', nombre: 'Torta Cuadrada de Chocolate', categoria: 'Tortas Cuadradas', precio: 45000, descripcion: '' },
-    { codigo: 'TC002', nombre: 'Torta Cuadrada de Frutas', categoria: 'Tortas Cuadradas', precio: 50000, descripcion: '' },
-    { codigo: 'TT001', nombre: 'Torta Circular de Vainilla', categoria: 'Tortas Circulares', precio: 40000, descripcion: '' },
-    { codigo: 'TT002', nombre: 'Torta Circular de Manjar', categoria: 'Tortas Circulares', precio: 42000, descripcion: '' },
-    { codigo: 'PI001', nombre: 'Mousse de Chocolate', categoria: 'Postres Individuales', precio: 5000, descripcion: '' },
-    { codigo: 'PI002', nombre: 'Tiramisú Clásico', categoria: 'Postres Individuales', precio: 5500, descripcion: '' },
-    { codigo: 'PSA001', nombre: 'Torta Sin Azúcar de Naranja', categoria: 'Sin Azúcar', precio: 48000, descripcion: '' },
-    { codigo: 'PSA002', nombre: 'Cheesecake Sin Azúcar', categoria: 'Sin Azúcar', precio: 47000, descripcion: '' },
-    { codigo: 'PT001', nombre: 'Empanada de Manzana', categoria: 'Pastelería Tradicional', precio: 3000, descripcion: '' },
-    { codigo: 'PT002', nombre: 'Tarta de Santiago', categoria: 'Pastelería Tradicional', precio: 6000, descripcion: '' },
-    { codigo: 'PG001', nombre: 'Brownie Sin Gluten', categoria: 'Sin Gluten', precio: 4000, descripcion: '' },
-    { codigo: 'PG002', nombre: 'Pan Sin Gluten', categoria: 'Sin Gluten', precio: 3500, descripcion: '' },
-    { codigo: 'PV001', nombre: 'Torta Vegana de Chocolate', categoria: 'Vegano', precio: 50000, descripcion: '' },
-    { codigo: 'PV002', nombre: 'Galletas Veganas de Avena', categoria: 'Vegano', precio: 4500, descripcion: '' },
-    { codigo: 'TE001', nombre: 'Torta Especial de Cumpleaños', categoria: 'Tortas Especiales', precio: 55000, descripcion: '' },
-    { codigo: 'TE002', nombre: 'Torta Especial de Boda', categoria: 'Tortas Especiales', precio: 60000, descripcion: '' }
+    { codigo: 'TC001', nombre: 'Torta Cuadrada de Chocolate', categoria: 'Tortas Cuadradas', precio: 45000, descripcion: '', stock: 10, stock_critico: 3, imagen: '' },
+    { codigo: 'TC002', nombre: 'Torta Cuadrada de Frutas', categoria: 'Tortas Cuadradas', precio: 50000, descripcion: '', stock: 8, stock_critico: 2, imagen: '' },
+    { codigo: 'TT001', nombre: 'Torta Circular de Vainilla', categoria: 'Tortas Circulares', precio: 40000, descripcion: '', stock: 12, stock_critico: null, imagen: '' },
+    { codigo: 'TT002', nombre: 'Torta Circular de Manjar', categoria: 'Tortas Circulares', precio: 42000, descripcion: '', stock: 6, stock_critico: 2, imagen: '' },
+    { codigo: 'PI001', nombre: 'Mousse de Chocolate', categoria: 'Postres Individuales', precio: 5000, descripcion: '', stock: 30, stock_critico: 5, imagen: '' },
+    { codigo: 'PI002', nombre: 'Tiramisu Clasico', categoria: 'Postres Individuales', precio: 5500, descripcion: '', stock: 25, stock_critico: null, imagen: '' },
+    { codigo: 'PSA001', nombre: 'Torta Sin Azucar de Naranja', categoria: 'Sin Azucar', precio: 48000, descripcion: '', stock: 5, stock_critico: 2, imagen: '' },
+    { codigo: 'PSA002', nombre: 'Cheesecake Sin Azucar', categoria: 'Sin Azucar', precio: 47000, descripcion: '', stock: 4, stock_critico: 1, imagen: '' },
+    { codigo: 'PT001', nombre: 'Empanada de Manzana', categoria: 'Pasteleria Tradicional', precio: 3000, descripcion: '', stock: 40, stock_critico: 10, imagen: '' },
+    { codigo: 'PT002', nombre: 'Tarta de Santiago', categoria: 'Pasteleria Tradicional', precio: 6000, descripcion: '', stock: 15, stock_critico: null, imagen: '' },
+    { codigo: 'PG001', nombre: 'Brownie Sin Gluten', categoria: 'Sin Gluten', precio: 4000, descripcion: '', stock: 20, stock_critico: 5, imagen: '' },
+    { codigo: 'PG002', nombre: 'Pan Sin Gluten', categoria: 'Sin Gluten', precio: 3500, descripcion: '', stock: 18, stock_critico: null, imagen: '' },
+    { codigo: 'PV001', nombre: 'Torta Vegana de Chocolate', categoria: 'Vegano', precio: 50000, descripcion: '', stock: 7, stock_critico: 2, imagen: '' },
+    { codigo: 'PV002', nombre: 'Galletas Veganas de Avena', categoria: 'Vegano', precio: 4500, descripcion: '', stock: 35, stock_critico: null, imagen: '' },
+    { codigo: 'TE001', nombre: 'Torta Especial de Cumpleanos', categoria: 'Tortas Especiales', precio: 55000, descripcion: '', stock: 3, stock_critico: 1, imagen: '' },
+    { codigo: 'TE002', nombre: 'Torta Especial de Boda', categoria: 'Tortas Especiales', precio: 60000, descripcion: '', stock: 2, stock_critico: 1, imagen: '' }
 ];
 
 function obtenerProductos() {
@@ -111,21 +111,24 @@ function renderizar() {
     const tbody = document.getElementById('productos-tbody');
 
     if (pagina.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:40px;color:#999;">No se encontraron productos.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:40px;color:#999;">No se encontraron productos.</td></tr>';
     } else {
-        tbody.innerHTML = pagina.map(p => `
+        tbody.innerHTML = pagina.map(p => {
+            const alertaStock = p.stock_critico !== null && p.stock_critico !== '' && p.stock <= parseInt(p.stock_critico);
+            return `
             <tr>
                 <td>${p.codigo}</td>
                 <td>${p.nombre}</td>
                 <td>${p.categoria}</td>
-                <td>$${p.precio.toLocaleString('es-CL')}</td>
+                <td>$${parseFloat(p.precio).toLocaleString('es-CL')}</td>
+                <td style="${alertaStock ? 'color:#c62828;font-weight:700;' : ''}">${p.stock}${alertaStock ? ' !' : ''}</td>
                 <td class="acciones">
                     <button class="btn-accion ver" onclick="window.location.href='ver-producto.html?codigo=${p.codigo}'" title="Ver">Ver</button>
-                    <button class="btn-accion editar" onclick="window.location.href='editar-producto.html?codigo=${p.codigo}'" title="Editar">Editar</button>
-                    <button class="btn-accion eliminar" onclick="eliminarProducto('${p.codigo}')" title="Eliminar">Eliminar</button>
+                    ${sesion.rol === 'Vendedor' ? '' : `<button class="btn-accion editar" onclick="window.location.href='editar-producto.html?codigo=${p.codigo}'" title="Editar">Editar</button>
+                    <button class="btn-accion eliminar" onclick="eliminarProducto('${p.codigo}')" title="Eliminar">Eliminar</button>`}
                 </td>
-            </tr>
-        `).join('');
+            </tr>`;
+        }).join('');
     }
 
     renderizarPaginacion();
@@ -167,7 +170,20 @@ function eliminarProducto(codigo) {
     renderizar();
 }
 
-document.addEventListener('DOMContentLoaded', renderizar);
+let sesion = { rol: '' };
+
+document.addEventListener('DOMContentLoaded', () => {
+    sesion = JSON.parse(localStorage.getItem('usuario_sesion') || '{}');
+    const nav = document.getElementById('sidebar-nav');
+    if (sesion.rol === 'Vendedor') {
+        nav.innerHTML = `
+            <a href="./listado-productos.html" class="active">Productos</a>
+            <a href="#" onclick="localStorage.removeItem('usuario_sesion'); window.location.href='../../index.html'; return false;" style="margin-top:auto;padding-top:20px;border-top:1px solid #ddd;">Cerrar Sesion</a>
+        `;
+        document.querySelector('.top-bar-right').innerHTML = '';
+    }
+    renderizar();
+});
 </script>
 
 <script src="../js/js-Admin/auth-check.js" defer></script>

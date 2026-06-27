@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Producto - Administrador | Pastelería Mil Sabores</title>
+    <title>Crear Producto - Administrador | Pasteleria Mil Sabores</title>
     <link rel="stylesheet" href="../css/css-Admin/admin-productos.css">
 </head>
 <body>
@@ -11,14 +11,13 @@
 <div class="container">
 
     <aside class="sidebar">
-        <div class="logo"><h2>Pastelería<br>Mil Sabores</h2></div>
+        <div class="logo"><h2>Pasteleria<br>Mil Sabores</h2></div>
         <nav>
             <a href="./admin-home.html">Dashboard</a>
             <a href="./listado-productos.html">Productos</a>
             <a href="./usuarios.html">Usuarios</a>
             <a href="#">Inventario</a>
             <a href="#">Reportes</a>
-            <a href="#">Clientes</a>
             <a href="#" onclick="localStorage.removeItem('usuario_sesion'); window.location.href='../../index.html'; return false;" style="margin-top:auto;padding-top:20px;border-top:1px solid #ddd;">Cerrar Sesion</a>
         </nav>
     </aside>
@@ -31,30 +30,44 @@
             <div class="form-card-header">Nuevo Producto</div>
 
             <form id="form-producto" novalidate>
-                <label>Código</label>
-                <input type="text" id="codigo" placeholder="Ej. TC003" required>
+                <label>Codigo <span style="color:#c62828;">*</span></label>
+                <input type="text" id="codigo" placeholder="Ej. TC003" minlength="3" required>
+                <small style="color:#888;font-size:0.75rem;margin-top:2px;">Minimo 3 caracteres</small>
 
-                <label>Nombre</label>
-                <input type="text" id="nombre" placeholder="Nombre del producto" required>
+                <label>Nombre <span style="color:#c62828;">*</span></label>
+                <input type="text" id="nombre" placeholder="Nombre del producto" maxlength="100" required>
 
-                <label>Categoría</label>
+                <label>Descripcion</label>
+                <textarea id="descripcion" placeholder="Descripcion del producto" rows="4" maxlength="500"></textarea>
+                <small style="color:#888;font-size:0.75rem;margin-top:2px;">Maximo 500 caracteres (opcional)</small>
+
+                <label>Precio <span style="color:#c62828;">*</span></label>
+                <input type="number" id="precio" placeholder="Ej. 45000" min="0" step="0.01" required>
+                <small style="color:#888;font-size:0.75rem;margin-top:2px;">Minimo 0 (producto FREE). Puede ser decimal.</small>
+
+                <label>Stock <span style="color:#c62828;">*</span></label>
+                <input type="number" id="stock" placeholder="Cantidad en inventario" min="0" step="1" required>
+                <small style="color:#888;font-size:0.75rem;margin-top:2px;">Solo numeros enteros. Minimo 0.</small>
+
+                <label>Stock Critico</label>
+                <input type="number" id="stock_critico" placeholder="Alerta cuando el stock sea igual o inferior a..." min="0" step="1">
+                <small style="color:#888;font-size:0.75rem;margin-top:2px;">Opcional. Solo numeros enteros.</small>
+
+                <label>Categoria <span style="color:#c62828;">*</span></label>
                 <select id="categoria" required>
-                    <option value="">Seleccionar categoría</option>
+                    <option value="">Seleccionar categoria</option>
                     <option value="Tortas Cuadradas">Tortas Cuadradas</option>
                     <option value="Tortas Circulares">Tortas Circulares</option>
                     <option value="Postres Individuales">Postres Individuales</option>
-                    <option value="Sin Azúcar">Sin Azúcar</option>
-                    <option value="Pastelería Tradicional">Pastelería Tradicional</option>
+                    <option value="Sin Azucar">Sin Azucar</option>
+                    <option value="Pasteleria Tradicional">Pasteleria Tradicional</option>
                     <option value="Sin Gluten">Sin Gluten</option>
                     <option value="Vegano">Vegano</option>
                     <option value="Tortas Especiales">Tortas Especiales</option>
                 </select>
 
-                <label>Precio</label>
-                <input type="number" id="precio" placeholder="Ej. 45000" min="1" required>
-
-                <label>Descripción</label>
-                <textarea id="descripcion" placeholder="Descripción del producto" rows="4"></textarea>
+                <label>Imagen</label>
+                <input type="text" id="imagen" placeholder="URL de la imagen (opcional)">
 
                 <div class="btn-row">
                     <button type="submit" class="btn-guardar">Guardar Producto</button>
@@ -72,14 +85,20 @@ document.getElementById('form-producto').addEventListener('submit', function(e) 
     e.preventDefault();
     const codigo = document.getElementById('codigo').value.trim();
     const nombre = document.getElementById('nombre').value.trim();
-    const categoria = document.getElementById('categoria').value;
-    const precio = document.getElementById('precio').value;
     const descripcion = document.getElementById('descripcion').value.trim();
+    const precio = document.getElementById('precio').value;
+    const stock = document.getElementById('stock').value;
+    const stock_critico = document.getElementById('stock_critico').value;
+    const categoria = document.getElementById('categoria').value;
+    const imagen = document.getElementById('imagen').value.trim();
 
-    if (!codigo || !nombre || !categoria || !precio) {
-        alert('Todos los campos obligatorios deben estar llenos.');
-        return;
-    }
+    if (!codigo || codigo.length < 3) { alert('El codigo debe tener minimo 3 caracteres.'); return; }
+    if (!nombre) { alert('El nombre es obligatorio.'); return; }
+    if (nombre.length > 100) { alert('El nombre debe tener maximo 100 caracteres.'); return; }
+    if (descripcion.length > 500) { alert('La descripcion debe tener maximo 500 caracteres.'); return; }
+    if (precio === '' || parseFloat(precio) < 0) { alert('El precio debe ser 0 o mayor.'); return; }
+    if (stock === '' || parseInt(stock) < 0) { alert('El stock debe ser 0 o mayor.'); return; }
+    if (!categoria) { alert('Debe seleccionar una categoria.'); return; }
 
     const productos = JSON.parse(localStorage.getItem('productos')) || [];
     if (productos.some(p => p.codigo === codigo)) {
@@ -87,9 +106,18 @@ document.getElementById('form-producto').addEventListener('submit', function(e) 
         return;
     }
 
-    productos.push({ codigo, nombre, categoria, precio: parseInt(precio), descripcion });
+    productos.push({
+        codigo,
+        nombre,
+        descripcion,
+        precio: parseFloat(precio),
+        stock: parseInt(stock),
+        stock_critico: stock_critico !== '' ? parseInt(stock_critico) : null,
+        categoria,
+        imagen
+    });
     localStorage.setItem('productos', JSON.stringify(productos));
-    alert(`Producto "${nombre}" creado exitosamente.`);
+    alert('Producto "' + nombre + '" creado exitosamente.');
     window.location.href = './listado-productos.html';
 });
 </script>

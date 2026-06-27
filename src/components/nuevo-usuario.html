@@ -3,103 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevo Usuario - Pastelería Mil Sabores</title>
-    <link rel="stylesheet" href="../css/css-Admin/nuevo-usuario.css">
+    <title>Nuevo Usuario - Administrador | Pasteleria Mil Sabores</title>
+    <link rel="stylesheet" href="../css/css-Admin/admin-productos.css">
+    <script src="../js/js-Admin/region-comuna-data.js"></script>
 </head>
 <body>
 
 <div class="container">
 
     <aside class="sidebar">
-        <div class="logo">
-            <h2>Pastelería<br>Mil Sabores</h2>
-        </div>
-
+        <div class="logo"><h2>Pasteleria<br>Mil Sabores</h2></div>
         <nav>
             <a href="./admin-home.html">Dashboard</a>
-            <a href="#">Órdenes</a>
-            <a href="#" class="active">Inventario</a>
-            <a href="#">Reportes</a>
-            <a href="#">Empleados</a>
+            <a href="./listado-productos.html">Productos</a>
             <a href="./usuarios.html">Usuarios</a>
+            <a href="#">Inventario</a>
+            <a href="#">Reportes</a>
             <a href="#" onclick="localStorage.removeItem('usuario_sesion'); window.location.href='../../index.html'; return false;" style="margin-top:auto;padding-top:20px;border-top:1px solid #ddd;">Cerrar Sesion</a>
         </nav>
     </aside>
 
     <main class="contenido">
 
-        <h1>NUEVO USUARIO</h1>
+        <h1 class="page-title">Nuevo Usuario</h1>
 
-        <div class="formulario-container">
+        <div class="form-card">
+            <div class="form-card-header">Registro de Usuario</div>
 
-            <div class="titulo-form">
-                Registro de usuario
-            </div>
+            <form id="form-usuario" novalidate>
+                <label>RUN <span style="color:#c62828;">*</span></label>
+                <input type="text" id="run" placeholder="Ej. 19011022K (sin puntos ni guion)" maxlength="9" required>
+                <small style="color:#888;font-size:0.75rem;margin-top:2px;">Minimo 7, maximo 9 caracteres. Sin puntos ni guion.</small>
 
-            <form id="form-nuevo-usuario" novalidate>
+                <label>Nombres <span style="color:#c62828;">*</span></label>
+                <input type="text" id="nombres" placeholder="Ej. Juan" maxlength="50" required>
 
-                <label>Nombre Completo</label>
-                <input type="text" id="nombre" placeholder="Ej. Juan Pérez Gómez" required maxlength="100">
+                <label>Apellidos <span style="color:#c62828;">*</span></label>
+                <input type="text" id="apellidos" placeholder="Ej. Perez Gomez" maxlength="100" required>
 
-                <label>Correo</label>
-                <input type="email" id="correo" placeholder="correo@ejemplo.com" required>
+                <label>Correo <span style="color:#c62828;">*</span></label>
+                <input type="email" id="correo" placeholder="correo@ejemplo.com" maxlength="100" required>
 
-                <label>Confirmar Correo</label>
-                <input type="email" id="confirmar-correo" placeholder="Repite tu correo electrónico" required>
+                <label>Contrasena <span style="color:#c62828;">*</span></label>
+                <input type="password" id="contrasena" placeholder="Minimo 4, maximo 10 caracteres" required>
 
-                <label>Contraseña</label>
-                <input type="password" id="contrasena" placeholder="Minimo 4 caracteres" required>
+                <label>Fecha de Nacimiento</label>
+                <input type="date" id="fecha_nac">
 
-                <label>Confirmar Contraseña</label>
-                <input type="password" id="confirmar-contrasena" placeholder="Repite tu contrasena" required>
-
-                <label>Rol</label>
-                <select id="rol">
+                <label>Tipo de Usuario <span style="color:#c62828;">*</span></label>
+                <select id="tipo" required>
                     <option value="Cliente">Cliente</option>
                     <option value="Administrador">Administrador</option>
+                    <option value="Vendedor">Vendedor</option>
                 </select>
 
-                <div class="btn-container">
-                    <button type="submit">REGISTRAR</button>
+                <label>Region <span style="color:#c62828;">*</span></label>
+                <select id="region" required>
+                    <option value="">-- Seleccione la region --</option>
+                </select>
+
+                <label>Comuna <span style="color:#c62828;">*</span></label>
+                <select id="comuna" required disabled>
+                    <option value="">-- Seleccione la comuna --</option>
+                </select>
+
+                <label>Direccion <span style="color:#c62828;">*</span></label>
+                <input type="text" id="direccion" placeholder="Ej. Calle Falsa 123" maxlength="300" required>
+
+                <div class="btn-row">
+                    <button type="submit" class="btn-guardar">Guardar Usuario</button>
+                    <button type="button" class="btn-cancelar" onclick="window.location.href='./usuarios.html'">Cancelar</button>
                 </div>
-
             </form>
-
-            <script>
-            document.getElementById('form-nuevo-usuario').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const nombre = document.getElementById('nombre').value.trim();
-                const correo = document.getElementById('correo').value.trim().toLowerCase();
-                const confirmarCorreo = document.getElementById('confirmar-correo').value.trim().toLowerCase();
-                const contrasena = document.getElementById('contrasena').value;
-                const confirmarContrasena = document.getElementById('confirmar-contrasena').value;
-                const rol = document.getElementById('rol').value;
-
-                if (!nombre) { alert('El nombre es obligatorio.'); return; }
-                if (nombre.length > 100) { alert('Maximo 100 caracteres.'); return; }
-                if (!correo) { alert('El correo es obligatorio.'); return; }
-                if (correo !== confirmarCorreo) { alert('Los correos no coinciden.'); return; }
-                if (!contrasena || contrasena.length < 4 || contrasena.length > 10) { alert('La contrasena debe tener entre 4 y 10 caracteres.'); return; }
-                if (contrasena !== confirmarContrasena) { alert('Las contrasenas no coinciden.'); return; }
-
-                const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-                if (usuarios.some(u => u.correo === correo)) {
-                    alert('Este correo ya esta registrado.');
-                    return;
-                }
-
-                usuarios.push({ nombre, correo, contrasena, rol });
-                localStorage.setItem('usuarios', JSON.stringify(usuarios));
-                alert('Usuario creado exitosamente.');
-                window.location.href = './usuarios.html';
-            });
-            </script>
-
         </div>
 
     </main>
 
 </div>
+
+<script>
+const regionSelect = document.getElementById('region');
+const comunaSelect = document.getElementById('comuna');
+
+Object.keys(REGIONES_COMUNAS).forEach(r => {
+    const opt = document.createElement('option');
+    opt.value = r;
+    opt.textContent = r;
+    regionSelect.appendChild(opt);
+});
+
+regionSelect.addEventListener('change', () => {
+    const region = regionSelect.value;
+    comunaSelect.innerHTML = '<option value="">-- Seleccione la comuna --</option>';
+    comunaSelect.disabled = !region;
+    if (region && REGIONES_COMUNAS[region]) {
+        REGIONES_COMUNAS[region].forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c;
+            opt.textContent = c;
+            comunaSelect.appendChild(opt);
+        });
+    }
+});
+
+document.getElementById('form-usuario').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const run = document.getElementById('run').value.trim();
+    const nombres = document.getElementById('nombres').value.trim();
+    const apellidos = document.getElementById('apellidos').value.trim();
+    const correo = document.getElementById('correo').value.trim().toLowerCase();
+    const contrasena = document.getElementById('contrasena').value;
+    const fecha_nac = document.getElementById('fecha_nac').value;
+    const tipo = document.getElementById('tipo').value;
+    const region = document.getElementById('region').value;
+    const comuna = document.getElementById('comuna').value;
+    const direccion = document.getElementById('direccion').value.trim();
+
+    const runLimpio = run.replace(/[^0-9kK]/g, '');
+    if (runLimpio.length < 7 || runLimpio.length > 9) { alert('RUN invalido. Debe tener entre 7 y 9 caracteres (sin puntos ni guion).'); return; }
+    if (!nombres) { alert('Los nombres son obligatorios.'); return; }
+    if (nombres.length > 50) { alert('Nombres maximo 50 caracteres.'); return; }
+    if (!apellidos) { alert('Los apellidos son obligatorios.'); return; }
+    if (apellidos.length > 100) { alert('Apellidos maximo 100 caracteres.'); return; }
+    if (!correo) { alert('El correo es obligatorio.'); return; }
+    if (correo.length > 100) { alert('Correo maximo 100 caracteres.'); return; }
+    const dominios = ['@inacap.cl', '@profesor.inacap.cl', '@gmail.com'];
+    if (!dominios.some(d => correo.endsWith(d))) { alert('Solo correos @inacap.cl, @profesor.inacap.cl o @gmail.com.'); return; }
+    if (!contrasena || contrasena.length < 4 || contrasena.length > 10) { alert('Contrasena debe tener entre 4 y 10 caracteres.'); return; }
+    if (!region) { alert('Seleccione una region.'); return; }
+    if (!comuna) { alert('Seleccione una comuna.'); return; }
+    if (!direccion) { alert('La direccion es obligatoria.'); return; }
+    if (direccion.length > 300) { alert('Direccion maximo 300 caracteres.'); return; }
+
+    const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+    if (usuarios.some(u => u.correo === correo)) { alert('Este correo ya esta registrado.'); return; }
+    if (usuarios.some(u => u.run === runLimpio)) { alert('Este RUN ya esta registrado.'); return; }
+
+    usuarios.push({
+        run: runLimpio,
+        nombres,
+        apellidos,
+        correo,
+        contrasena,
+        fecha_nac,
+        tipo,
+        region,
+        comuna,
+        direccion
+    });
+    localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    alert('Usuario creado exitosamente.');
+    window.location.href = './usuarios.html';
+});
+</script>
 
 <script src="../js/js-Admin/auth-check.js" defer></script>
 </body>

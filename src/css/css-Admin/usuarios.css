@@ -197,6 +197,42 @@ tbody tr:hover td {
   border-color: #8B4513;
 }
 
+.acciones {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-accion {
+  width: auto;
+  padding: 6px 12px;
+  height: 32px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-family: 'Lato', Arial, sans-serif;
+}
+
+.btn-accion.ver:hover {
+  background: #e3f2fd;
+  border-color: #90caf9;
+}
+
+.btn-accion.editar:hover {
+  background: #fff8e1;
+  border-color: #ffe082;
+}
+
+.btn-accion.eliminar:hover {
+  background: #fbe9e7;
+  border-color: #ef9a9a;
+}
+
 @media (max-width: 768px) {
   .container {
     flex-direction: column;

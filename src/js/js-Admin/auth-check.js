@@ -7,9 +7,17 @@
   }
   try {
     const usuario = JSON.parse(sesion);
-    if (usuario.rol !== 'Administrador') {
-      alert('Acceso denegado. Debes ser administrador para acceder a esta sección.');
+    if (usuario.rol === 'Cliente') {
+      alert('Acceso denegado. No tienes permisos para acceder a esta seccion.');
       window.location.href = '../../index.html';
+    }
+    if (usuario.rol === 'Vendedor') {
+      const allowed = ['listado-productos.html', 'ver-producto.html'];
+      const current = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
+      if (!allowed.includes(current)) {
+        alert('Acceso denegado. Los vendedores solo pueden ver productos.');
+        window.location.href = './listado-productos.html';
+      }
     }
   } catch {
     localStorage.removeItem('usuario_sesion');

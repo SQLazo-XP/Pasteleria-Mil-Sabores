@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('login-form');
 
-  const DOMINIOS_PERMITIDOS = ['@inacap.cl', '@inacapmail.cl', '@gmail.com'];
+  const DOMINIOS_PERMITIDOS = ['@inacap.cl', '@profesor.inacap.cl', '@gmail.com'];
 
   function dominioValido(email) {
     const e = email.trim().toLowerCase();
@@ -32,36 +32,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const correo = document.getElementById('correo');
     const contrasena = document.getElementById('contrasena');
 
-    // Validar correo
     if (!correo.value.trim()) {
       mostrarError('El correo es obligatorio.');
       return;
     }
     if (correo.value.trim().length > 100) {
-      mostrarError('El correo debe tener máximo 100 caracteres.');
+      mostrarError('El correo debe tener maximo 100 caracteres.');
       return;
     }
     if (!dominioValido(correo.value)) {
-      mostrarError('Solo se permiten correos @inacap.cl, @inacapmail.cl o @gmail.com.');
+      mostrarError('Solo se permiten correos @inacap.cl, @profesor.inacap.cl o @gmail.com.');
       return;
     }
 
-    // Validar contraseña
     if (!contrasena.value) {
-      mostrarError('La contraseña es obligatoria.');
+      mostrarError('La contrasena es obligatoria.');
       return;
     }
     if (contrasena.value.length < 4 || contrasena.value.length > 10) {
-      mostrarError('La contraseña debe tener entre 4 y 10 caracteres.');
+      mostrarError('La contrasena debe tener entre 4 y 10 caracteres.');
       return;
     }
 
-    // Sembrar usuarios iniciales si no existen
     if (!localStorage.getItem('usuarios')) {
       const semilla = [
-        { nombre: 'Juan Pérez', correo: 'juan@inacap.cl', contrasena: 'admin1234', rol: 'Administrador' },
-        { nombre: 'María López', correo: 'maria@gmail.com', contrasena: '1234', rol: 'Cliente' },
-        { nombre: 'Carlos Díaz', correo: 'carlos@inacapmail.cl', contrasena: '1234', rol: 'Cliente' }
+        { run: '19011022K', nombres: 'Juan', apellidos: 'Perez', correo: 'juan@inacap.cl', contrasena: 'admin1234', fecha_nac: '1990-05-15', tipo: 'Administrador', region: 'Metropolitana de Santiago', comuna: 'Santiago', direccion: 'Av. Siempre Viva 123' },
+        { run: '12345678', nombres: 'Maria', apellidos: 'Lopez', correo: 'maria@gmail.com', contrasena: '1234', fecha_nac: '1995-08-22', tipo: 'Cliente', region: 'Valparaiso', comuna: 'Vina del Mar', direccion: 'Calle Los Clientes 456' },
+        { run: '87654321', nombres: 'Carlos', apellidos: 'Diaz', correo: 'carlos@inacapmail.cl', contrasena: '1234', fecha_nac: '', tipo: 'Vendedor', region: 'Biobio', comuna: 'Concepcion', direccion: 'Av. Vendedor 789' }
       ];
       localStorage.setItem('usuarios', JSON.stringify(semilla));
     }
@@ -71,11 +68,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const usuario = usuarios.find(u => u.correo === correoLimpio && u.contrasena === contrasena.value);
 
     if (!usuario) {
-      mostrarError('Correo o contraseña incorrectos.');
+      mostrarError('Correo o contrasena incorrectos.');
       return;
     }
 
-    localStorage.setItem('usuario_sesion', JSON.stringify({ nombre: usuario.nombre, correo: usuario.correo, rol: usuario.rol }));
+    localStorage.setItem('usuario_sesion', JSON.stringify({
+      run: usuario.run,
+      nombres: usuario.nombres,
+      apellidos: usuario.apellidos,
+      correo: usuario.correo,
+      rol: usuario.tipo,
+      region: usuario.region,
+      comuna: usuario.comuna
+    }));
 
     const urlParams = new URLSearchParams(window.location.search);
     const redirect = urlParams.get('redirect') || '../../index.html';

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Usuarios - Pastelería Mil Sabores</title>
+    <title>Listado de Usuarios - Pasteleria Mil Sabores</title>
     <link rel="stylesheet" href="../css/css-Admin/usuarios.css">
 </head>
 <body>
@@ -11,43 +11,32 @@
 <div class="container">
 
     <aside class="sidebar">
-
         <div class="logo">
-            <h2>Pastelería<br>Mil Sabores</h2>
+            <h2>Pasteleria<br>Mil Sabores</h2>
         </div>
-
         <nav>
             <a href="./admin-home.html">Dashboard</a>
-            <a href="#" class="active">Órdenes</a>
+            <a href="./listado-productos.html">Productos</a>
+            <a href="#" class="active">Usuarios</a>
             <a href="#">Inventario</a>
             <a href="#">Reportes</a>
-            <a href="#">Empleados</a>
-            <a href="#">Clientes</a>
             <a href="#" onclick="localStorage.removeItem('usuario_sesion'); window.location.href='../../index.html'; return false;" style="margin-top:auto;padding-top:20px;border-top:1px solid #ddd;">Cerrar Sesion</a>
         </nav>
-
     </aside>
 
     <main class="contenido">
 
         <div class="top-bar">
-
             <h1>Usuarios</h1>
-
             <div class="top-bar-right">
                 <button class="btn-nuevo" onclick="window.location.href='./nuevo-usuario.html'">
                     NUEVO USUARIO
                 </button>
-
-                <div class="notificacion">
-                    🔔
-                </div>
             </div>
-
         </div>
 
         <div class="subtitulo">
-            Todos los usuarios ▼
+            Todos los usuarios
         </div>
 
         <div class="tabla-container">
@@ -56,9 +45,11 @@
 
                 <thead>
                     <tr>
-                        <th>Nombre</th>
+                        <th>RUN</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
                         <th>Correo</th>
-                        <th>Rol</th>
+                        <th>Tipo</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -77,15 +68,17 @@
             const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
             const tbody = document.getElementById('usuarios-tbody');
             if (usuarios.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;padding:40px;color:#999;">No hay usuarios registrados.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:40px;color:#999;">No hay usuarios registrados.</td></tr>';
                 document.getElementById('paginacion').innerHTML = '';
                 return;
             }
             tbody.innerHTML = usuarios.map((u, i) => `
                 <tr>
-                    <td>${u.nombre}</td>
+                    <td>${u.run || 'N/A'}</td>
+                    <td>${u.nombres || 'N/A'}</td>
+                    <td>${u.apellidos || 'N/A'}</td>
                     <td>${u.correo}</td>
-                    <td><span class="estado ${u.rol === 'Administrador' ? 'activo' : 'pendiente'}">${u.rol}</span></td>
+                    <td><span class="estado ${(u.tipo || u.rol) === 'Administrador' ? 'activo' : ((u.tipo || u.rol) === 'Vendedor' ? 'pendiente' : '')}">${u.tipo || u.rol || 'Cliente'}</span></td>
                     <td class="acciones">
                         <button class="btn-accion ver" onclick="window.location.href='ver-usuario.html?id=${i}'">Ver</button>
                         <button class="btn-accion editar" onclick="window.location.href='editar-usuario.html?id=${i}'">Editar</button>

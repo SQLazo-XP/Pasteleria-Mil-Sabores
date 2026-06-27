@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle Usuario - Administrador | Pastelería Mil Sabores</title>
+    <title>Detalle Usuario - Administrador | Pasteleria Mil Sabores</title>
     <link rel="stylesheet" href="../css/css-Admin/admin-productos.css">
 </head>
 <body>
@@ -11,14 +11,13 @@
 <div class="container">
 
     <aside class="sidebar">
-        <div class="logo"><h2>Pastelería<br>Mil Sabores</h2></div>
+        <div class="logo"><h2>Pasteleria<br>Mil Sabores</h2></div>
         <nav>
             <a href="./admin-home.html">Dashboard</a>
             <a href="./listado-productos.html">Productos</a>
             <a href="./usuarios.html" class="active">Usuarios</a>
             <a href="#">Inventario</a>
             <a href="#">Reportes</a>
-            <a href="#">Clientes</a>
             <a href="#" onclick="localStorage.removeItem('usuario_sesion'); window.location.href='../../index.html'; return false;" style="margin-top:auto;padding-top:20px;border-top:1px solid #ddd;">Cerrar Sesion</a>
         </nav>
     </aside>
@@ -32,7 +31,7 @@
         </div>
 
         <div class="btn-row" style="margin-top:20px;">
-            <button class="btn-cancelar" onclick="window.location.href='./usuarios.html'">← Volver</button>
+            <button class="btn-cancelar" onclick="window.location.href='./usuarios.html'">Volver</button>
         </div>
 
     </main>
@@ -53,16 +52,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     container.innerHTML = `
         <div class="detail-field">
-            <span class="detail-label">Nombre</span>
-            <span class="detail-value">${usuario.nombre}</span>
+            <span class="detail-label">RUN</span>
+            <span class="detail-value">${usuario.run || 'No registrado'}</span>
+        </div>
+        <div class="detail-field">
+            <span class="detail-label">Nombres</span>
+            <span class="detail-value">${usuario.nombres || 'No registrado'}</span>
+        </div>
+        <div class="detail-field">
+            <span class="detail-label">Apellidos</span>
+            <span class="detail-value">${usuario.apellidos || 'No registrado'}</span>
         </div>
         <div class="detail-field">
             <span class="detail-label">Correo</span>
             <span class="detail-value">${usuario.correo}</span>
         </div>
         <div class="detail-field">
-            <span class="detail-label">Rol</span>
-            <span class="detail-value">${usuario.rol}</span>
+            <span class="detail-label">Fecha de Nacimiento</span>
+            <span class="detail-value">${usuario.fecha_nac || 'No registrada'}</span>
+        </div>
+        <div class="detail-field">
+            <span class="detail-label">Tipo</span>
+            <span class="detail-value">${usuario.tipo || usuario.rol || 'Cliente'}</span>
+        </div>
+        <div class="detail-field">
+            <span class="detail-label">Region</span>
+            <span class="detail-value">${usuario.region || 'No registrada'}</span>
+        </div>
+        <div class="detail-field">
+            <span class="detail-label">Comuna</span>
+            <span class="detail-value">${usuario.comuna || 'No registrada'}</span>
+        </div>
+        <div class="detail-field">
+            <span class="detail-label">Direccion</span>
+            <span class="detail-value">${usuario.direccion || 'No registrada'}</span>
         </div>
         <div class="btn-row" style="margin-top:24px;">
             <button class="btn-nuevo" onclick="window.location.href='editar-usuario.html?id=${id}'">Editar</button>

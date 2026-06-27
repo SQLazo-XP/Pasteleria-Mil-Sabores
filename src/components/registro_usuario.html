@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registro de Usuario - Pastelería Mil Sabores</title>
+    <title>Registro de Usuario - Pasteleria Mil Sabores</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Pacifico&display=swap" rel="stylesheet">
@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="../css/css-Registro_Usuario/registro_usuario.css">
     <link rel="stylesheet" href="../css/css-Home/footers_menu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="../js/js-Admin/region-comuna-data.js"></script>
   </head>
   <body>
 
-    <!-- ===== BARRA DE NAVEGACION ===== -->
     <header>
       <nav class="navbar">
         <a href="../../index.html" class="logo-link">
@@ -42,7 +42,6 @@
       </nav>
     </header>
 
-    <!-- ===== FORMULARIO DE REGISTRO ===== -->
     <section class="register-section">
       <div class="register-card">
         <div class="form-header-bar">
@@ -51,39 +50,42 @@
 
         <form id="register-form" class="form-body" novalidate>
           <div class="form-group">
-            <label for="nombre" class="form-label">Nombre Completo</label>
-            <input type="text" id="nombre" class="form-input" placeholder="Ej. Juan Pérez Gómez" required>
+            <label for="run" class="form-label">RUN</label>
+            <input type="text" id="run" class="form-input" placeholder="Ej. 19011022K (sin puntos ni guion)" maxlength="9" required>
+          </div>
+          <div class="form-group">
+            <label for="nombres" class="form-label">Nombres</label>
+            <input type="text" id="nombres" class="form-input" placeholder="Ej. Juan" maxlength="50" required>
+          </div>
+          <div class="form-group">
+            <label for="apellidos" class="form-label">Apellidos</label>
+            <input type="text" id="apellidos" class="form-input" placeholder="Ej. Perez Gomez" maxlength="100" required>
           </div>
           <div class="form-group">
             <label for="correo" class="form-label">Correo</label>
-            <input type="email" id="correo" class="form-input" placeholder="correo@ejemplo.com" required>
+            <input type="email" id="correo" class="form-input" placeholder="correo@ejemplo.com" maxlength="100" required>
           </div>
           <div class="form-group">
             <label for="confirmar-correo" class="form-label">Confirmar Correo</label>
-            <input type="email" id="confirmar-correo" class="form-input" placeholder="Repite tu correo electrónico" required>
+            <input type="email" id="confirmar-correo" class="form-input" placeholder="Repite tu correo electronico" required>
           </div>
           <div class="form-group">
-            <label for="contrasena" class="form-label">Contraseña</label>
-            <input type="password" id="contrasena" class="form-input" placeholder="Mínimo 6 caracteres" required>
+            <label for="contrasena" class="form-label">Contrasena</label>
+            <input type="password" id="contrasena" class="form-input" placeholder="Minimo 4, maximo 10 caracteres" required>
           </div>
           <div class="form-group">
-            <label for="confirmar-contrasena" class="form-label">Confirmar Contraseña</label>
-            <input type="password" id="confirmar-contrasena" class="form-input" placeholder="Repite tu contraseña" required>
+            <label for="confirmar-contrasena" class="form-label">Confirmar Contrasena</label>
+            <input type="password" id="confirmar-contrasena" class="form-input" placeholder="Repite tu contrasena" required>
           </div>
           <div class="form-group">
-            <label for="telefono" class="form-label">Teléfono (opcional)</label>
-            <input type="tel" id="telefono" class="form-input" placeholder="Ej. 987654321 (9 dígitos)">
+            <label for="fecha_nac" class="form-label">Fecha de Nacimiento (opcional)</label>
+            <input type="date" id="fecha_nac" class="form-input">
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="region" class="form-label">Región</label>
+              <label for="region" class="form-label">Region</label>
               <select id="region" class="form-select" required>
-                <option value="">-- Seleccione la región --</option>
-                <option value="RM">Región Metropolitana de Santiago</option>
-                <option value="Araucania">Región de la Araucanía</option>
-                <option value="Nuble">Región de Ñuble</option>
-                <option value="Maule">Región del Maule</option>
-                <option value="Biobio">Región del Biobío</option>
+                <option value="">-- Seleccione la region --</option>
               </select>
             </div>
             <div class="form-group">
@@ -93,6 +95,10 @@
               </select>
             </div>
           </div>
+          <div class="form-group">
+            <label for="direccion" class="form-label">Direccion</label>
+            <input type="text" id="direccion" class="form-input" placeholder="Ej. Calle Falsa 123" maxlength="300" required>
+          </div>
           <div class="submit-btn-container">
             <button type="submit" class="submit-btn">Registrar</button>
           </div>
@@ -100,11 +106,10 @@
       </div>
     </section>
 
-    <!-- ===== PIE DE PAGINA ===== -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-left">
-          <h4 class="footer-brand">Pastelería Mil Sabores</h4>
+          <h4 class="footer-brand">Pasteleria Mil Sabores</h4>
           <div class="payment-icons">
             <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Visa">
             <img src="https://cdn-icons-png.flaticon.com/512/349/349228.png" alt="MasterCard">
@@ -133,7 +138,6 @@
             <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-
           </div>
         </div>
       </div>

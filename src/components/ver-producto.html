@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle Producto - Administrador | Pastelería Mil Sabores</title>
+    <title>Detalle Producto - Administrador | Pasteleria Mil Sabores</title>
     <link rel="stylesheet" href="../css/css-Admin/admin-productos.css">
 </head>
 <body>
@@ -11,14 +11,13 @@
 <div class="container">
 
     <aside class="sidebar">
-        <div class="logo"><h2>Pastelería<br>Mil Sabores</h2></div>
-        <nav>
+        <div class="logo"><h2>Pasteleria<br>Mil Sabores</h2></div>
+        <nav id="sidebar-nav">
             <a href="./admin-home.html">Dashboard</a>
             <a href="./listado-productos.html">Productos</a>
             <a href="./usuarios.html">Usuarios</a>
             <a href="#">Inventario</a>
             <a href="#">Reportes</a>
-            <a href="#">Clientes</a>
             <a href="#" onclick="localStorage.removeItem('usuario_sesion'); window.location.href='../../index.html'; return false;" style="margin-top:auto;padding-top:20px;border-top:1px solid #ddd;">Cerrar Sesion</a>
         </nav>
     </aside>
@@ -32,7 +31,7 @@
         </div>
 
         <div class="btn-row" style="margin-top:20px;">
-            <button class="btn-cancelar" onclick="window.location.href='./listado-productos.html'">← Volver</button>
+            <button class="btn-cancelar" onclick="window.location.href='./listado-productos.html'">Volver</button>
         </div>
 
     </main>
@@ -46,14 +45,27 @@ const productos = JSON.parse(localStorage.getItem('productos')) || [];
 const producto = productos.find(p => p.codigo === codigo);
 
 document.addEventListener('DOMContentLoaded', () => {
+    const sesion = JSON.parse(localStorage.getItem('usuario_sesion') || '{}');
+    const nav = document.getElementById('sidebar-nav');
+    if (sesion.rol === 'Vendedor') {
+        nav.innerHTML = `
+            <a href="./listado-productos.html">Productos</a>
+            <a href="#" onclick="localStorage.removeItem('usuario_sesion'); window.location.href='../../index.html'; return false;" style="margin-top:auto;padding-top:20px;border-top:1px solid #ddd;">Cerrar Sesion</a>
+        `;
+    }
+
     const container = document.getElementById('detail-container');
     if (!producto) {
         container.innerHTML = '<p style="text-align:center;padding:40px;color:#c62828;">Producto no encontrado.</p>';
         return;
     }
+
+    const alertaStock = producto.stock_critico !== null && producto.stock_critico !== '' && producto.stock <= parseInt(producto.stock_critico);
+    const esVendedor = sesion.rol === 'Vendedor';
+
     container.innerHTML = `
         <div class="detail-field">
-            <span class="detail-label">Código</span>
+            <span class="detail-label">Codigo</span>
             <span class="detail-value">${producto.codigo}</span>
         </div>
         <div class="detail-field">
@@ -61,20 +73,32 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="detail-value">${producto.nombre}</span>
         </div>
         <div class="detail-field">
-            <span class="detail-label">Categoría</span>
+            <span class="detail-label">Categoria</span>
             <span class="detail-value">${producto.categoria}</span>
         </div>
         <div class="detail-field">
             <span class="detail-label">Precio</span>
-            <span class="detail-value">$${producto.precio.toLocaleString('es-CL')}</span>
+            <span class="detail-value">$${parseFloat(producto.precio).toLocaleString('es-CL')}</span>
         </div>
         <div class="detail-field">
-            <span class="detail-label">Descripción</span>
-            <span class="detail-value">${producto.descripcion || 'Sin descripción'}</span>
+            <span class="detail-label">Stock</span>
+            <span class="detail-value" style="${alertaStock ? 'color:#c62828;font-weight:700;' : ''}">${producto.stock}${alertaStock ? ' (Stock critico!)' : ''}</span>
         </div>
-        <div class="btn-row" style="margin-top:24px;">
+        <div class="detail-field">
+            <span class="detail-label">Stock Critico</span>
+            <span class="detail-value">${producto.stock_critico !== null && producto.stock_critico !== '' ? producto.stock_critico : 'No definido'}</span>
+        </div>
+        <div class="detail-field">
+            <span class="detail-label">Descripcion</span>
+            <span class="detail-value">${producto.descripcion || 'Sin descripcion'}</span>
+        </div>
+        <div class="detail-field">
+            <span class="detail-label">Imagen</span>
+            <span class="detail-value">${producto.imagen ? '<a href="' + producto.imagen + '" target="_blank">Ver imagen</a>' : 'Sin imagen'}</span>
+        </div>
+        ${esVendedor ? '' : `<div class="btn-row" style="margin-top:24px;">
             <button class="btn-nuevo" onclick="window.location.href='editar-producto.html?codigo=${producto.codigo}'">Editar</button>
-        </div>
+        </div>`}
     `;
 });
 </script>
